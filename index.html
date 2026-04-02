@@ -36,14 +36,14 @@
   .page-heading-box h1 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #334D4A; text-align: left; letter-spacing: -0.01em; }
 
   .subheading { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #334D4A; margin: 18px 0 8px; }
-  .body { font-size: 11.5px; line-height: 1.85; color: #222; font-weight: 400; margin-bottom: 12px; }
+  .body { font-size: 12px; line-height: 1.85; color: #222; font-weight: 400; margin-bottom: 12px; }
   .pull { border-left: 3px solid #FED3DC; padding: 10px 16px; margin: 14px 0; background: #fffbfc; }
   .pull p { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: #334D4A; line-height: 1.6; }
-  .section-title { font-size: 9.5px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #334D4A; margin: 16px 0 8px; }
+  .section-title { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #334D4A; margin: 16px 0 8px; }
 
   .checklist { list-style: none; margin-bottom: 12px; }
-  .checklist li { font-size: 11px; color: #222; padding: 6px 0; border-bottom: 0.5px solid #f0ebe6; display: flex; align-items: flex-start; gap: 10px; line-height: 1.55; }
-  .checklist li::before { content: ''; width: 12px; height: 12px; border: 1.5px solid #FED3DC; border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+  .checklist li { font-size: 11.5px; color: #222; padding: 6px 0; border-bottom: 0.5px solid #f0ebe6; display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; }
+  .checklist li::before { content: ''; width: 13px; height: 13px; border: 1.5px solid #FED3DC; border-radius: 3px; flex-shrink: 0; margin-top: 1px; }
 
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
   .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 12px 0; }
@@ -53,7 +53,7 @@
 
   .activity-box { border: 1px solid #FED3DC; border-radius: 4px; padding: 16px 18px; margin: 14px 0; background: #fffbfc; }
   .activity-label { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #fff; background: #334D4A; display: inline-block; padding: 3px 10px; border-radius: 3px; margin-bottom: 10px; }
-  .activity-text { font-size: 11px; color: #333; line-height: 1.7; margin-bottom: 12px; }
+  .activity-text { font-size: 11.5px; color: #333; line-height: 1.7; margin-bottom: 12px; }
 
   .highlight-box { background: #334D4A; border-radius: 4px; padding: 13px 17px; margin: 12px 0; }
   .highlight-box p { font-size: 11px; color: rgba(255,255,255,0.88); line-height: 1.8; }
@@ -76,7 +76,7 @@
   .qr-box div, .qr-box canvas, .qr-box img { width: 52px !important; height: 52px !important; }
   .qr-text { flex: 1; }
   .qr-title { font-size: 11px; font-weight: 600; color: #334D4A; margin-bottom: 3px; }
-  .qr-url { font-size: 9.5px; color: #2A4061; text-decoration: underline; word-break: break-all; line-height: 1.4; }
+  a.qr-url { font-size: 9.5px; color: #2A4061; text-decoration: underline; word-break: break-all; line-height: 1.4; display: block; }
 
   .link-list { list-style: none; margin: 8px 0 14px; }
   .link-list li { font-size: 10.5px; padding: 4px 0; border-bottom: 0.5px solid #f0ebe6; }
@@ -88,20 +88,20 @@
   .notes-lines { flex: 1; display: flex; flex-direction: column; margin-top: 8px; }
   .notes-lines .write-line { height: 40px; border-bottom: 1px solid #f0d8de; }
 
-  .full-page-image { width: 100%; padding: 30px; display: flex; align-items: center; justify-content: center; flex: 1; }
-  .full-page-image img { max-width: 100%; max-height: 750px; object-fit: contain; border-radius: 4px; }
+  .full-page-image { width: 100%; padding: 10px 20px; display: flex; align-items: center; justify-content: center; flex: 1; }
+  .full-page-image img { max-width: 100%; max-height: 820px; object-fit: contain; border-radius: 4px; }
   .half-page-image { width: 100%; padding: 20px; display: flex; align-items: center; justify-content: center; }
   .half-page-image img { max-width: 60%; max-height: 350px; object-fit: contain; border-radius: 4px; }
 
   /* BACK */
-  .back { background: #334D4A; padding: 14px; }
-  .back-inner { min-height: 849px; display: flex; flex-direction: column; justify-content: space-between; padding: 52px 52px 48px 93px; }
-  .back-top h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #FED3DC; margin-bottom: 20px; }
+  .back { background: #334D4A; }
+  .back-inner { min-height: 877px; display: flex; flex-direction: column; justify-content: space-between; padding: 56px 56px 56px 80px; }
+  .back-top h2 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #FED3DC; margin-bottom: 22px; letter-spacing: -0.01em; }
   .back-links { list-style: none; }
-  .back-links li { margin-bottom: 8px; }
-  .back-links li a { font-size: 12.5px; color: rgba(254,211,220,0.85); text-decoration: underline; }
+  .back-links li { margin-bottom: 10px; }
+  .back-links li a { font-size: 13px; color: #FED3DC; text-decoration: underline; font-weight: 400; }
   .back-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
-  .back-url { font-size: 11px; color: rgba(254,211,220,0.5); margin-top: 8px; }
+  .back-url { font-size: 12px; color: rgba(254,211,220,0.65); margin-top: 10px; font-weight: 400; }
 
   /* cohort table */
   .ct td, .ct th { padding: 10px; font-size: 11px; border-bottom: 0.5px solid #f0e8ec; }
@@ -113,7 +113,7 @@
   .ct tr:nth-child(even) td:nth-child(3) { background: #fff8f9; background-image: repeating-linear-gradient(#fff8f9,#fff8f9 28px,#f0d8de 28px,#f0d8de 29px); }
 
   .qa-list { list-style: none; margin: 8px 0 12px; }
-  .qa-list li { font-size: 10.5px; color: #333; padding: 4px 0 4px 14px; border-bottom: 0.5px solid #f0ebe6; line-height: 1.6; position: relative; }
+  .qa-list li { font-size: 11px; color: #333; padding: 4px 0 4px 14px; border-bottom: 0.5px solid #f0ebe6; line-height: 1.6; position: relative; }
   .qa-list li::before { content: '–'; position: absolute; left: 0; color: #FED3DC; }
 
   .numbered-list { list-style: none; margin: 8px 0 12px; counter-reset: num; }
@@ -166,16 +166,16 @@
   <table class="ct" style="width:100%;border-collapse:collapse;">
     <thead><tr><th>Name</th><th>Email</th><th>Notes</th></tr></thead>
     <tbody>
-      <tr><td>Elo Ayemite Magbegor</td><td>elo.magbegor@hotmail.com</td><td></td></tr>
-      <tr><td>Barbara Pretel</td><td>barbarapretel@gmail.com</td><td></td></tr>
-      <tr><td>Chantelle Maree Ragg</td><td>chantelle.ragg@yahoo.com</td><td></td></tr>
-      <tr><td>Kate Bartlett</td><td>kateb.85@hotmail.com</td><td></td></tr>
-      <tr><td>Krystal Dicketts</td><td>sacredsixbirtheducation@gmail.com</td><td></td></tr>
-      <tr><td>Mikaela</td><td>midwifemikaela185@gmail.com</td><td></td></tr>
-      <tr><td>Christie Taylor</td><td>christie.taylor@gmail.com</td><td></td></tr>
-      <tr><td>Melanie Archbold</td><td>melaniearchbold72@gmail.com</td><td></td></tr>
-      <tr><td>Jessica Clark</td><td>jessica.c.clark86@gmail.com</td><td></td></tr>
-      <tr><td>Roslyn Callaghan</td><td>roslyncallaghan@me.com</td><td></td></tr>
+      <tr><td>Elo Ayemite Magbegor</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e1848d8ecf8c80868384868e93a1898e958c80888dcf828e8c">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Barbara Pretel</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8be9eaf9e9eaf9eafbf9eeffeee7cbece6eae2e7a5e8e4e6">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Chantelle Maree Ragg</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="513239303f25343d3d347f23303636112830393e3e7f323e3c">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Kate Bartlett</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3a515b4e5f5814020f7a52554e575b535614595557">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Krystal Dicketts</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e4978587968180978d9c868d96908c8180918785908d8b8aa48389858d88ca878b89">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Mikaela</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="026f6b66756b64676f6b6963676e63333a3742656f636b6e2c616d6f">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Christie Taylor</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7112190318020518145f0510081d1e0331161c10181d5f121e1c">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Melanie Archbold</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6a070f060b04030f0b1809020805060e5d582a0d070b030644090507">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Jessica Clark</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3c56594f4f555f5d125f125f505d4e57040a7c5b515d5550125f5351">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Roslyn Callaghan</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb899488978295989a97979a9c939a95bb969ed5989496">[email&#160;protected]</a></td><td></td></tr>
     </tbody>
   </table>
   <div class="footer"><p>© Melanie the Midwife 2026</p></div>
@@ -189,15 +189,15 @@
   <table class="ct" style="width:100%;border-collapse:collapse;">
     <thead><tr><th>Name</th><th>Email</th><th>Notes</th></tr></thead>
     <tbody>
-      <tr><td>Chantelle Woodhouse</td><td>chantelle.woodhouse@hotmail.com</td><td></td></tr>
-      <tr><td>Isabel Silvis</td><td>belsilvis@gmail.com</td><td></td></tr>
-      <tr><td>Kate Hoeben</td><td>katehoeben@hotmail.com</td><td></td></tr>
-      <tr><td>Meg Hitchick</td><td>meg.hitchick@gmail.com</td><td></td></tr>
-      <tr><td>Alexa Nguyen</td><td>alexanguyen321@gmail.com</td><td></td></tr>
-      <tr><td>Caroline Hurnen</td><td>rbfcaro95@gmail.com</td><td></td></tr>
-      <tr><td>Olivia Gross</td><td>liv.0645@gmail.com</td><td></td></tr>
-      <tr><td>Grace Newton</td><td>grace_newton2@hotmail.com</td><td></td></tr>
-      <tr><td>Melanie Jackson</td><td>mel@melaniethemidwife.com</td><td></td></tr>
+      <tr><td>Chantelle Woodhouse</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="36555e575842535a5a5318415959525e59434553765e59425b575f5a1855595b">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Isabel Silvis</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b4d6d1d8c7ddd8c2ddc7f4d3d9d5ddd89ad7dbd9">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Kate Hoeben</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6a010b1e0f02050f080f042a02051e070b030644090507">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Meg Hitchick</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b666e6c2563627f68636268604b6c666a626725686466">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Alexa Nguyen</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ed8c8188958c838a98948883dedfdcad8a808c8481c38e8280">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Caroline Hurnen</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="abd9c9cdc8cad9c4929eebccc6cac2c785c8c4c6">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Olivia Gross</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="86eaeff0a8b6b0b2b3c6e1ebe7efeaa8e5e9eb">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Grace Newton</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="583f2a393b3d07363d2f2c37366a1830372c35393134763b3735">[email&#160;protected]</a></td><td></td></tr>
+      <tr><td>Melanie Jackson</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cda0a8a18da0a8a1aca3a4a8b9a5a8a0a4a9baa4aba8e3aea2a0">[email&#160;protected]</a></td><td></td></tr>
     </tbody>
   </table>
   <div class="footer"><p>© Melanie the Midwife 2026</p></div>
@@ -211,11 +211,11 @@
   <p class="body">Your mentorship is current for the 2026 circumstance. Staying connected with other private midwives is the easiest way to stay abreast of changes that impact upon private midwives and ensure that you continue to run a business that is beyond reproach and remains compliant with the necessary legislation and legal requirements. The mentorship is an excellent start to build and commence your business — the maintenance program ensures that you continue to thrive in business and in private practice. Don't worry, you'll never be alone in this business journey.</p>
   <div class="section-title">What's included</div>
   <ul class="checklist">
-    <li>Live 4-day workshop — Wednesday May 6th to Saturday May 9th, in person or via live stream. Recorded and available on your platform indefinitely.</li>
+    <li>Live 4-day workshop — Wednesday May 6th to Saturday May 9th, in person or via live stream. Recorded and posted on your platform indefinitely. This book accompanies the live session — your personal business planning book. Guard it with your life!</li>
     <li>Online mentorship platform at melaniethemidwife.com — recordings, downloads, Record of Understanding templates, and active comment sections.</li>
     <li>7 monthly live mentorship sessions, June through December — 2 hours each, recorded.</li>
-    <li>Email access to Mel at mel@melaniethemidwife.com throughout 2026. You may also hear from Julia (julia@melaniethemidwife.com) or Dan (daniel@melaniethemidwife.com) for organisational and technical support.</li>
-    <li>WhatsApp group for daily connection with your cohort — opt in or out anytime. If you are not yet in the WhatsApp chat, email julia@melaniethemidwife.com to be included.</li>
+    <li>Email access to Mel at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="365b535a765b535a57585f53425e535b5f52415f50531855595b">[email&#160;protected]</a> throughout 2026. You may also hear from Julia (<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f59f80999c94b5989099949b9c90819d90989c91829c9390db969a98">[email&#160;protected]</a>) or Dan (<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f6b6e61666a634f626a636e61666a7b676a62666b7866696a216c6062">[email&#160;protected]</a>) who provide organisational and technical support — they are friendly, don't bite, and you are welcome to reach out to them anytime. Note: Mel can provide support via email but is unable to offer real-time clinical support for medical matters; this is not an on-call arrangement.</li>
+    <li>WhatsApp group for daily connection with your cohort — opt in or out anytime. If you are not yet in the WhatsApp chat, email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6309160f0a02230e060f020d0a06170b060e0a07140a05064d000c0e">[email&#160;protected]</a> to be included.</li>
     <li>Invitation to the ongoing Maintenance Program at completion — over 50 midwives in your inner circle to help you keep going.</li>
   </ul>
   <div class="two-col">
@@ -246,7 +246,7 @@
     </tbody>
   </table>
   <div class="highlight-box">
-    <p><strong>Contact the team</strong><br>Mel — mel@melaniethemidwife.com<br>Julia — julia@melaniethemidwife.com<br>Dan — daniel@melaniethemidwife.com</p>
+    <p><strong>Contact the team</strong><br>Mel — <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a8c5cdc4e8c5cdc4c9c6c1cddcc0cdc5c1ccdfc1cecd86cbc7c5">[email&#160;protected]</a><br>Julia — <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="761c031a1f17361b131a17181f13021e131b1f12011f10135815191b">[email&#160;protected]</a><br>Dan — <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="086c6966616d6448656d646966616d7c606d65616c7f616e6d266b6765">[email&#160;protected]</a></p>
   </div>
   <p class="body">You've made a fabulous choice to invest in the mentorship. You've given yourself the best chance of a successful, long and lovely midwifery career by investing in this program.</p>
   <p class="body" style="color:#334D4A;font-weight:600;margin-top:12px;">Wise choice sister. Let's get started! Much love, Mel x</p>
@@ -263,7 +263,7 @@
 <div class="label">7 — What it means to be a private midwife</div>
 <div class="page inner">
   <div class="page-heading-box"><h1>What does it mean to be a private practice midwife?</h1></div>
-  <div class="qr-row"><div class="qr-box" id="qr1"></div><div class="qr-text"><div class="qr-title">The International Confederation of Midwives — Definition of a Midwife</div><div class="qr-url">https://internationalmidwives.org/resources/international-definition-of-the-midwife/</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr1"></div><div class="qr-text"><div class="qr-title">The International Confederation of Midwives — Definition of a Midwife</div><a class="qr-url" href="https://internationalmidwives.org/resources/international-definition-of-the-midwife/" target="_blank">https://internationalmidwives.org/resources/international-definition-of-the-midwife/</a></div></div>
   <p class="body">The ICM defines a midwife as a person who has successfully completed a midwifery education programme based on the ICM Essential Competencies for Midwifery Practice, acquired the requisite qualifications to be registered and/or legally licensed to practice midwifery, and who demonstrates competency in the scope of practice of the midwife.</p>
   <div class="pull"><p>"The midwife is recognised as a responsible and accountable professional, who works in partnership with women to give the necessary support, care and advice during pregnancy, labour and the postpartum period, to conduct births on the midwife's own responsibility and to provide care for the newborn and the infant."</p></div>
   <p class="body">A midwife may practise in any setting including the home, community, hospital, clinic or health unit. Working as a private midwife is not a rogue or outlandish choice — you are working according to the full definition and scope of a midwife, endorsed by the International Confederation of Midwives.</p>
@@ -286,8 +286,8 @@
     <li>Automate your insurance payments so this never lapses</li>
     <li>Put money aside to commit to paid training or conferences</li>
   </ul>
-  <div class="qr-row"><div class="qr-box" id="qr_sm1"></div><div class="qr-text"><div class="qr-title">Social Media: How to meet your obligations under the national law</div><div class="qr-url">https://www.ahpra.gov.au/Resources/Social-media-guidance.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr_adv"></div><div class="qr-text"><div class="qr-title">Guidelines for the advertisement of a regulated health service</div><div class="qr-url">https://www.ahpra.gov.au/Resources/Advertising-hub/Advertising-guidelines-and-other-guidance/Advertising-guidelines.aspx</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr_sm1"></div><div class="qr-text"><div class="qr-title">Social Media: How to meet your obligations under the national law</div><a class="qr-url" href="https://www.ahpra.gov.au/Resources/Social-media-guidance.aspx" target="_blank">https://www.ahpra.gov.au/Resources/Social-media-guidance.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr_adv"></div><div class="qr-text"><div class="qr-title">Guidelines for the advertisement of a regulated health service</div><a class="qr-url" href="https://www.ahpra.gov.au/Resources/Advertising-hub/Advertising-guidelines-and-other-guidance/Advertising-guidelines.aspx" target="_blank">https://www.ahpra.gov.au/Resources/Advertising-hub/Advertising-guidelines-and-other-guidance/Advertising-guidelines.aspx</a></div></div>
   <div class="footer"><p>© Melanie the Midwife 2026</p></div>
 </div>
 
@@ -297,12 +297,12 @@
   <div class="page-heading-box"><h1>Legal, Procedural and Clinical Requirements</h1></div>
   <p class="body">Being outside of the mainstream maternity system frees us from hospital policy and protocol, but it also means we have to be responsible for ourselves. Having a very good understanding of the legal, clinical and registration requirements and adhering to these will go a long way to keeping you safe in private practice.</p>
   <div class="section-title">Governance of midwives in private practice</div>
-  <div class="qr-row"><div class="qr-box" id="qr2"></div><div class="qr-text"><div class="qr-title">Code of Conduct for Nurses and Midwives</div><div class="qr-url">https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/FAQ/Fact-sheet-Code-of-conduct-for-nurses-and-Code-of-conduct-for-midwives.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr3"></div><div class="qr-text"><div class="qr-title">The Midwife Standards for Practice</div><div class="qr-url">https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Professional-standards/Midwife-standards-for-practice.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr4"></div><div class="qr-text"><div class="qr-title">Safety and Quality Guidelines for privately practising midwives</div><div class="qr-url">https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Safety-and-quality-guidelines-for-privately-practising-midwives.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr5"></div><div class="qr-text"><div class="qr-title">Continuing Professional Development</div><div class="qr-url">https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Guidelines-cpd.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr6"></div><div class="qr-text"><div class="qr-title">Social Media: How to meet your obligations</div><div class="qr-url">https://www.ahpra.gov.au/Resources/Social-media-guidance.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr7"></div><div class="qr-text"><div class="qr-title">Guidelines for the advertisement of a regulated health service</div><div class="qr-url">https://www.ahpra.gov.au/Resources/Advertising-hub/Advertising-guidelines-and-other-guidance/Advertising-guidelines.aspx</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr2"></div><div class="qr-text"><div class="qr-title">Code of Conduct for Nurses and Midwives</div><a class="qr-url" href="https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/FAQ/Fact-sheet-Code-of-conduct-for-nurses-and-Code-of-conduct-for-midwives.aspx" target="_blank">https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/FAQ/Fact-sheet-Code-of-conduct-for-nurses-and-Code-of-conduct-for-midwives.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr3"></div><div class="qr-text"><div class="qr-title">The Midwife Standards for Practice</div><a class="qr-url" href="https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Professional-standards/Midwife-standards-for-practice.aspx" target="_blank">https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Professional-standards/Midwife-standards-for-practice.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr4"></div><div class="qr-text"><div class="qr-title">Safety and Quality Guidelines for privately practising midwives</div><a class="qr-url" href="https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Safety-and-quality-guidelines-for-privately-practising-midwives.aspx" target="_blank">https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Safety-and-quality-guidelines-for-privately-practising-midwives.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr5"></div><div class="qr-text"><div class="qr-title">Continuing Professional Development</div><a class="qr-url" href="https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Guidelines-cpd.aspx" target="_blank">https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Guidelines-cpd.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr6"></div><div class="qr-text"><div class="qr-title">Social Media: How to meet your obligations</div><a class="qr-url" href="https://www.ahpra.gov.au/Resources/Social-media-guidance.aspx" target="_blank">https://www.ahpra.gov.au/Resources/Social-media-guidance.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr7"></div><div class="qr-text"><div class="qr-title">Guidelines for the advertisement of a regulated health service</div><a class="qr-url" href="https://www.ahpra.gov.au/Resources/Advertising-hub/Advertising-guidelines-and-other-guidance/Advertising-guidelines.aspx" target="_blank">https://www.ahpra.gov.au/Resources/Advertising-hub/Advertising-guidelines-and-other-guidance/Advertising-guidelines.aspx</a></div></div>
   <div class="footer"><p>© Melanie the Midwife 2026</p></div>
 </div>
 
@@ -310,19 +310,26 @@
 <div class="label">9 — Regulatory requirements (continued)</div>
 <div class="page inner">
   <div class="page-heading-box"><h1>Legal, Procedural and Clinical Requirements</h1></div>
-  <div class="qr-row"><div class="qr-box" id="qr8"></div><div class="qr-text"><div class="qr-title">Australian Health Practitioner Regulation Agency</div><div class="qr-url">https://www.ahpra.gov.au/</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr9"></div><div class="qr-text"><div class="qr-title">Nursing and Midwifery Board</div><div class="qr-url">https://www.nursingmidwiferyboard.gov.au/</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr10"></div><div class="qr-text"><div class="qr-title">AHPRA Notifications portal</div><div class="qr-url">https://www.ahpra.gov.au/Notifications.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr11"></div><div class="qr-text"><div class="qr-title">NMBA Endorsement and Notations</div><div class="qr-url">https://www.nursingmidwiferyboard.gov.au/Registration-and-Endorsement/Endorsements-Notations.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr12"></div><div class="qr-text"><div class="qr-title">NMBA Registration Standards</div><div class="qr-url">https://www.nursingmidwiferyboard.gov.au/Registration-Standards.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr13"></div><div class="qr-text"><div class="qr-title">NMBA Continuing Professional Development</div><div class="qr-url">https://www.nursingmidwiferyboard.gov.au/Registration-Standards/Continuing-professional-development.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr14"></div><div class="qr-text"><div class="qr-title">Professional Indemnity Insurance Arrangements</div><div class="qr-url">https://www.nursingmidwiferyboard.gov.au/Registration-Standards/Professional-indemnity-insurance-arrangements.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr15"></div><div class="qr-text"><div class="qr-title">Endorsement for Scheduled Medicines</div><div class="qr-url">https://www.nursingmidwiferyboard.gov.au/Registration-Standards/Endorsement-for-scheduled-medicines-for-midwives.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr16"></div><div class="qr-text"><div class="qr-title">The National Law (AHPRA Regulation)</div><div class="qr-url">https://www.ahpra.gov.au/About-Ahpra/What-We-Do/National-Law.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr17"></div><div class="qr-text"><div class="qr-title">Your Insurance option — MIGA</div><div class="qr-url">https://www.miga.com.au/insurance/midwives</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr18"></div><div class="qr-text"><div class="qr-title">ACM Guidelines for Consultation and Referral</div><div class="qr-url">https://midwives.org.au/common/Uploaded%20files/Publications/ACM%20Guidelines%20for%20Consultation%20and%20Referral.pdf</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr18b"></div><div class="qr-text"><div class="qr-title">Appendix items and templates for the ACM Guidelines</div><div class="qr-url">https://midwives.org.au/Web/Web/C-R-Guidelines/Guidelines%20and%20Documents.aspx?hkey=555dfe4d-32d9-4fea-9826-f255e3335240</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr19"></div><div class="qr-text"><div class="qr-title">Medicare items for endorsed midwives</div><div class="qr-url">https://www.servicesaustralia.gov.au/mbs-billing-rules-for-eligible-midwife-items?context=20</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr8"></div><div class="qr-text"><div class="qr-title">Australian Health Practitioner Regulation Agency</div><a class="qr-url" href="https://www.ahpra.gov.au/" target="_blank">https://www.ahpra.gov.au/</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr9"></div><div class="qr-text"><div class="qr-title">Nursing and Midwifery Board</div><a class="qr-url" href="https://www.nursingmidwiferyboard.gov.au/" target="_blank">https://www.nursingmidwiferyboard.gov.au/</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr10"></div><div class="qr-text"><div class="qr-title">AHPRA Notifications portal</div><a class="qr-url" href="https://www.ahpra.gov.au/Notifications.aspx" target="_blank">https://www.ahpra.gov.au/Notifications.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr11"></div><div class="qr-text"><div class="qr-title">NMBA Endorsement and Notations</div><a class="qr-url" href="https://www.nursingmidwiferyboard.gov.au/Registration-and-Endorsement/Endorsements-Notations.aspx" target="_blank">https://www.nursingmidwiferyboard.gov.au/Registration-and-Endorsement/Endorsements-Notations.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr12"></div><div class="qr-text"><div class="qr-title">NMBA Registration Standards</div><a class="qr-url" href="https://www.nursingmidwiferyboard.gov.au/Registration-Standards.aspx" target="_blank">https://www.nursingmidwiferyboard.gov.au/Registration-Standards.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr13"></div><div class="qr-text"><div class="qr-title">NMBA Continuing Professional Development</div><a class="qr-url" href="https://www.nursingmidwiferyboard.gov.au/Registration-Standards/Continuing-professional-development.aspx" target="_blank">https://www.nursingmidwiferyboard.gov.au/Registration-Standards/Continuing-professional-development.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr14"></div><div class="qr-text"><div class="qr-title">Professional Indemnity Insurance Arrangements</div><a class="qr-url" href="https://www.nursingmidwiferyboard.gov.au/Registration-Standards/Professional-indemnity-insurance-arrangements.aspx" target="_blank">https://www.nursingmidwiferyboard.gov.au/Registration-Standards/Professional-indemnity-insurance-arrangements.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr15"></div><div class="qr-text"><div class="qr-title">Endorsement for Scheduled Medicines</div><a class="qr-url" href="https://www.nursingmidwiferyboard.gov.au/Registration-Standards/Endorsement-for-scheduled-medicines-for-midwives.aspx" target="_blank">https://www.nursingmidwiferyboard.gov.au/Registration-Standards/Endorsement-for-scheduled-medicines-for-midwives.aspx</a></div></div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ══ 9c. REGULATORY REQUIREMENTS — Page 3 ══ -->
+<div class="label">9c — Regulatory requirements (continued)</div>
+<div class="page inner">
+  <div class="page-heading-box"><h1>Legal, Procedural and Clinical Requirements</h1></div>
+  <div class="qr-row"><div class="qr-box" id="qr16"></div><div class="qr-text"><div class="qr-title">The National Law (AHPRA Regulation)</div><a class="qr-url" href="https://www.ahpra.gov.au/About-Ahpra/What-We-Do/National-Law.aspx" target="_blank">https://www.ahpra.gov.au/About-Ahpra/What-We-Do/National-Law.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr17"></div><div class="qr-text"><div class="qr-title">Your Insurance option — MIGA</div><a class="qr-url" href="https://www.miga.com.au/insurance/midwives" target="_blank">https://www.miga.com.au/insurance/midwives</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr18"></div><div class="qr-text"><div class="qr-title">ACM Guidelines for Consultation and Referral</div><a class="qr-url" href="https://midwives.org.au/common/Uploaded%20files/Publications/ACM%20Guidelines%20for%20Consultation%20and%20Referral.pdf" target="_blank">https://midwives.org.au/common/Uploaded%20files/Publications/ACM%20Guidelines%20for%20Consultation%20and%20Referral.pdf</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr18b"></div><div class="qr-text"><div class="qr-title">Appendix items and templates for the ACM Guidelines</div><a class="qr-url" href="https://midwives.org.au/Web/Web/C-R-Guidelines/Guidelines%20and%20Documents.aspx?hkey=555dfe4d-32d9-4fea-9826-f255e3335240" target="_blank">https://midwives.org.au/Web/Web/C-R-Guidelines/Guidelines%20and%20Documents.aspx?hkey=555dfe4d-32d9-4fea-9826-f255e3335240</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr19"></div><div class="qr-text"><div class="qr-title">Medicare items for endorsed midwives</div><a class="qr-url" href="https://www.servicesaustralia.gov.au/mbs-billing-rules-for-eligible-midwife-items?context=20" target="_blank">https://www.servicesaustralia.gov.au/mbs-billing-rules-for-eligible-midwife-items?context=20</a></div></div>
   <div class="footer"><p>© Melanie the Midwife 2026</p></div>
 </div>
 
@@ -342,7 +349,7 @@
   <div class="section-title">Key benefits for your practice</div>
   <ul class="checklist">
     <li><strong>Secure Client Information:</strong> Use Google Drive to store antenatal records, blood results, and birth plans with strict "View Only" or "Editor" permissions.</li>
-    <li><strong>Professional Identity:</strong> An email like care@yourname.com.au signals to hospitals, GPs, and Medicare that you are a registered, professional healthcare provider.</li>
+    <li><strong>Professional Identity:</strong> An email like <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bedddfccdbfec7d1cbccd0dfd3db90ddd1d390dfcb">[email&#160;protected]</a> signals to hospitals, GPs, and Medicare that you are a registered, professional healthcare provider.</li>
     <li><strong>Mobile Clinical Notes:</strong> Access your files securely on any device.</li>
     <li><strong>Seamless Intake with Google Forms:</strong> Send clients a digital intake form — health histories and consent forms feed directly into a private spreadsheet.</li>
     <li><strong>Telehealth Ready:</strong> Google Meet offers secure, encrypted video calling easy for clients to use without downloading extra software. You can enable Gemini notes for a transcript and summary of the appointment.</li>
@@ -361,7 +368,7 @@
     <li>Sign up for Google Workspace (Business Standard or Business Plus recommended)</li>
     <li>Verify domain ownership by adding a TXT record to your DNS settings</li>
     <li>Set up MX records in your domain provider to route emails to Gmail</li>
-    <li>Create your professional email address (e.g. hello@yourpractice.com.au)</li>
+    <li>Create your professional email address (e.g. <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cda5a8a1a1a28db4a2b8bfbdbfacaeb9a4aea8e3aea2a0e3acb8">[email&#160;protected]</a>)</li>
     <li>Enable 2-Step Verification (2FA) for all accounts — critical for APP compliance</li>
     <li>Navigate to Admin Console &gt; Billing &gt; Legal and Compliance</li>
     <li>Review and accept the Cloud Data Processing Addendum (CDPA)</li>
@@ -385,7 +392,7 @@
   <p class="body">During this dreaming time you also have a chance to diligently whittle away at bits and pieces that will benefit you, your business and your clients in the future. This is your preparation time — a secret little phase of business building where you can privately commit to skill and knowledge acquisition before anyone even knows what is coming.</p>
   <div class="pull"><p>"Adopt the craftsman mindset — commit to getting 1% better every day. Ask not 'how can I improve everything around me' but 'how can I improve myself'." — Cal Newport</p></div>
   <p class="body">If you are looking down the prospect of many more years in a job you don't love, read <em>So Good They Can't Ignore You</em> by Cal Newport. The book will reset your mindset to take advantage of the position you are in and position you positively for your next steps into private practice.</p>
-  <div class="qr-row"><div class="qr-box" id="qr20"></div><div class="qr-text"><div class="qr-title">So Good They Can't Ignore You — Cal Newport</div><div class="qr-url">https://www.amazon.com.au/Good-They-Cant-Ignore-You/dp/0349415862</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr20"></div><div class="qr-text"><div class="qr-title">So Good They Can't Ignore You — Cal Newport</div><a class="qr-url" href="https://www.amazon.com.au/Good-They-Cant-Ignore-You/dp/0349415862" target="_blank">https://www.amazon.com.au/Good-They-Cant-Ignore-You/dp/0349415862</a></div></div>
   <div class="activity-box">
     <div class="activity-label">Activity</div>
     <div class="activity-text">List out the midwifery skills you are already confident in, then list the ones that need to be acquired or enhanced. Where will you get the new skills?</div>
@@ -445,7 +452,7 @@
   <div class="subheading">Develop a digital presence</div>
   <p class="body">If you don't want to be online, word of mouth and referrals from other private midwives can work — but the internet and social media have changed the way women access information. At the very least, you must build yourself a website for your services. Having a digital presence is essential and it's never been easier to create one. You can plug away at these in the background and only make them public when you are completely happy with them.</p>
   <p class="body">When it comes to social media: create an account dedicated to business; be generous with the content you post; be genuine. Remember to abide by the AHPRA rules for social media posts — do not put testimonials on your social media, don't discuss vaccinations, and don't make unsubstantiated claims.</p>
-  <div class="qr-row"><div class="qr-box" id="qr21"></div><div class="qr-text"><div class="qr-title">Social Media: How to meet your obligations under the national law</div><div class="qr-url">https://www.ahpra.gov.au/Resources/Social-media-guidance.aspx</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr21"></div><div class="qr-text"><div class="qr-title">Social Media: How to meet your obligations under the national law</div><a class="qr-url" href="https://www.ahpra.gov.au/Resources/Social-media-guidance.aspx" target="_blank">https://www.ahpra.gov.au/Resources/Social-media-guidance.aspx</a></div></div>
   <div class="activity-box">
     <div class="activity-label">Activity</div>
     <div class="activity-text">Workshop what feels within your capacity when it comes to your digital footprint. Then list what feels outside of your capacity. How can you overcome this?</div>
@@ -475,9 +482,9 @@
   <p class="body">This mentorship has been carefully crafted to give you activities and information that will prepare you to launch into private practice. 180 midwives have been through this program before you and 50 are still in close contact and thriving in private practice.</p>
   <p class="body">The ones who find success through this mentorship are the ones who attend at least 50% of the opportunities within it. Even if you are not ready yet, going through the mentorship in real time is the best preparation for your future business.</p>
   <div class="highlight-box">
-    <p><strong>Access your online content anytime at:</strong><br>www.melaniethemidwife.com<br><br><strong>For assistance or questions:</strong><br>daniel@melaniethemidwife.com<br>julia@melaniethemidwife.com<br>mel@melaniethemidwife.com</p>
+    <p><strong>Access your online content anytime at:</strong><br>www.melaniethemidwife.com<br><br><strong>For assistance or questions:</strong><br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3357525d5a565f735e565f525d5a56475b565e5a57445a55561d505c5e">[email&#160;protected]</a><br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4f253a23262e0f222a232e21262a3b272a22262b3826292a612c2022">[email&#160;protected]</a><br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e68b838aa68b838a87888f83928e838b8f82918f8083c885898b">[email&#160;protected]</a></p>
   </div>
-  <div class="qr-row"><div class="qr-box" id="qr22"></div><div class="qr-text"><div class="qr-title">melaniethemidwife.com</div><div class="qr-url">https://www.melaniethemidwife.com</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr22"></div><div class="qr-text"><div class="qr-title">melaniethemidwife.com</div><a class="qr-url" href="https://www.melaniethemidwife.com" target="_blank">https://www.melaniethemidwife.com</a></div></div>
   <div class="footer"><p>© Melanie the Midwife 2026</p></div>
 </div>
 
@@ -618,8 +625,8 @@
   <div class="page-heading-box"><h1>15 Steps to Starting your Business</h1></div>
   <div class="step-pill"><div class="step-num">1</div>Choosing your business structure</div>
   <p class="body">The easiest way to start out as a private midwife is as a sole trader — suitable while earning under $75,000–$120,000. In your first few years you may comfortably operate as a sole trader and this can be completely set up by you without an accountant. Once full-time, switching to a company structure often makes better financial sense as a sole trader pays tax on their total profit.</p>
-  <div class="qr-row"><div class="qr-box" id="qr23"></div><div class="qr-text"><div class="qr-title">The Australian Government Guide to Starting a Business</div><div class="qr-url">https://business.gov.au/Guide/Starting?section=Beforeyoustart</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr24"></div><div class="qr-text"><div class="qr-title">Australian Tax Office — Starting your own business</div><div class="qr-url">https://www.ato.gov.au/businesses-and-organisations/starting-registering-or-closing-a-business/starting-your-own-business</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr23"></div><div class="qr-text"><div class="qr-title">The Australian Government Guide to Starting a Business</div><a class="qr-url" href="https://business.gov.au/Guide/Starting?section=Beforeyoustart" target="_blank">https://business.gov.au/Guide/Starting?section=Beforeyoustart</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr24"></div><div class="qr-text"><div class="qr-title">Australian Tax Office — Starting your own business</div><a class="qr-url" href="https://www.ato.gov.au/businesses-and-organisations/starting-registering-or-closing-a-business/starting-your-own-business" target="_blank">https://www.ato.gov.au/businesses-and-organisations/starting-registering-or-closing-a-business/starting-your-own-business</a></div></div>
   <div class="activity-box">
     <div class="activity-label">Activity</div>
     <div class="activity-text">What will your business structure be? Are you setting up as a sole trader, a company, or something else? Write your decision and reasoning below.</div>
@@ -648,10 +655,10 @@
   <div class="page-heading-box"><h1>15 Steps to Starting your Business</h1></div>
   <div class="step-pill"><div class="step-num">3</div>Choosing and registering a business name + ABN</div>
   <p class="body">Choose something that will allow you to diversify, represents you as a registered health professional, and is completely original. Check the business name register and make sure the website domain and social media handles are also available.</p>
-  <div class="qr-row"><div class="qr-box" id="qr25"></div><div class="qr-text"><div class="qr-title">How to choose a business name</div><div class="qr-url">https://business.gov.au/planning/new-businesses/choose-a-business-name</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr26"></div><div class="qr-text"><div class="qr-title">Register your business name — ASIC</div><div class="qr-url">https://www.asic.gov.au/for-business-and-companies/business-names/register-a-business-name/</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr27"></div><div class="qr-text"><div class="qr-title">Apply for your ABN</div><div class="qr-url">https://www.abr.gov.au/business-super-funds-charities/applying-abn</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr28"></div><div class="qr-text"><div class="qr-title">Register as a company — ASIC</div><div class="qr-url">https://www.asic.gov.au/for-business-and-companies/companies/register-a-company/</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr25"></div><div class="qr-text"><div class="qr-title">How to choose a business name</div><a class="qr-url" href="https://business.gov.au/planning/new-businesses/choose-a-business-name" target="_blank">https://business.gov.au/planning/new-businesses/choose-a-business-name</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr26"></div><div class="qr-text"><div class="qr-title">Register your business name — ASIC</div><a class="qr-url" href="https://www.asic.gov.au/for-business-and-companies/business-names/register-a-business-name/" target="_blank">https://www.asic.gov.au/for-business-and-companies/business-names/register-a-business-name/</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr27"></div><div class="qr-text"><div class="qr-title">Apply for your ABN</div><a class="qr-url" href="https://www.abr.gov.au/business-super-funds-charities/applying-abn" target="_blank">https://www.abr.gov.au/business-super-funds-charities/applying-abn</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr28"></div><div class="qr-text"><div class="qr-title">Register as a company — ASIC</div><a class="qr-url" href="https://www.asic.gov.au/for-business-and-companies/companies/register-a-company/" target="_blank">https://www.asic.gov.au/for-business-and-companies/companies/register-a-company/</a></div></div>
   <div class="activity-box">
     <div class="activity-label">Activity</div>
     <div class="activity-text">Brainstorm business names. Check availability across the business register, website domain and social media.</div>
@@ -719,7 +726,7 @@
       <p style="font-size:10.5px;color:#333;line-height:1.7;margin-top:4px;">Podcast · Social media content · Serve the local birthing community · Advocacy and activism · Blog · YouTube channel · Free gatherings or classes</p>
     </div>
   </div>
-  <div class="qr-row"><div class="qr-box" id="qr29"></div><div class="qr-text"><div class="qr-title">Seth Godin — Marketing</div><div class="qr-url">https://www.sethgodin.com/</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr29"></div><div class="qr-text"><div class="qr-title">Seth Godin — Marketing</div><a class="qr-url" href="https://www.sethgodin.com/" target="_blank">https://www.sethgodin.com/</a></div></div>
   <div class="activity-box">
     <div class="activity-label">Activity</div>
     <div class="activity-text">What will your marketing strategy look like? What free value can you give your audience?</div>
@@ -744,10 +751,10 @@
   </ul>
   <div class="two-col">
     <div style="border:0.5px solid #ccc;border-radius:4px;padding:14px;">
-      <div class="qr-row"><div class="qr-box" id="qr30"></div><div class="qr-text"><div class="qr-title">Thriday for Sole Traders</div><div class="qr-url">https://www.thriday.com.au/</div></div></div>
+      <div class="qr-row"><div class="qr-box" id="qr30"></div><div class="qr-text"><div class="qr-title">Thriday for Sole Traders</div><a class="qr-url" href="https://www.thriday.com.au/" target="_blank">https://www.thriday.com.au/</a></div></div>
     </div>
     <div style="border:0.5px solid #ccc;border-radius:4px;padding:14px;">
-      <div class="qr-row"><div class="qr-box" id="qr31"></div><div class="qr-text"><div class="qr-title">Xero for bigger business</div><div class="qr-url">https://www.xero.com/au/</div></div></div>
+      <div class="qr-row"><div class="qr-box" id="qr31"></div><div class="qr-text"><div class="qr-title">Xero for bigger business</div><a class="qr-url" href="https://www.xero.com/au/" target="_blank">https://www.xero.com/au/</a></div></div>
     </div>
   </div>
   <div class="activity-box">
@@ -858,12 +865,12 @@
     <li>PPH medication — by 'Stock' Medication Script</li>
   </ul>
   <div class="section-title">Where to order your equipment</div>
-  <div class="qr-row"><div class="qr-box" id="qr32"></div><div class="qr-text"><div class="qr-title">Simply Birth — birth pools and liners</div><div class="qr-url">https://simplybirth.com.au/</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr33"></div><div class="qr-text"><div class="qr-title">Solmed Medical Supplies</div><div class="qr-url">https://solmed.com.au/</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr34"></div><div class="qr-text"><div class="qr-title">Medshop Medical Supplies</div><div class="qr-url">https://www.medshop.com.au/</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr35"></div><div class="qr-text"><div class="qr-title">Birth International</div><div class="qr-url">https://birthinternational.com/shop/</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr36"></div><div class="qr-text"><div class="qr-title">The Birth Sling — use code MELANIEJACKSON</div><div class="qr-url">https://thebirthsling.com/?ref=GreatBirth</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr37"></div><div class="qr-text"><div class="qr-title">Elle TENS Labour TENS</div><div class="qr-url">https://elletens.com.au/?elle=melaniethemidwife</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr32"></div><div class="qr-text"><div class="qr-title">Simply Birth — birth pools and liners</div><a class="qr-url" href="https://simplybirth.com.au/" target="_blank">https://simplybirth.com.au/</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr33"></div><div class="qr-text"><div class="qr-title">Solmed Medical Supplies</div><a class="qr-url" href="https://solmed.com.au/" target="_blank">https://solmed.com.au/</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr34"></div><div class="qr-text"><div class="qr-title">Medshop Medical Supplies</div><a class="qr-url" href="https://www.medshop.com.au/" target="_blank">https://www.medshop.com.au/</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr35"></div><div class="qr-text"><div class="qr-title">Birth International</div><a class="qr-url" href="https://birthinternational.com/shop/" target="_blank">https://birthinternational.com/shop/</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr36"></div><div class="qr-text"><div class="qr-title">The Birth Sling — use code MELANIEJACKSON</div><a class="qr-url" href="https://thebirthsling.com/?ref=GreatBirth" target="_blank">https://thebirthsling.com/?ref=GreatBirth</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr37"></div><div class="qr-text"><div class="qr-title">Elle TENS Labour TENS</div><a class="qr-url" href="https://elletens.com.au/?elle=melaniethemidwife" target="_blank">https://elletens.com.au/?elle=melaniethemidwife</a></div></div>
   <div class="footer"><p>© Melanie the Midwife 2026</p></div>
 </div>
 
@@ -930,8 +937,8 @@
   <div class="page-heading-box"><h1>The Grey Area — Between Booking and First Appointment</h1></div>
   <p class="body">As soon as you have formally booked a woman into your care, hurry to identify her needs so you can put preventative measures in place. If you are her sole care provider and she is not seeing a GP, don't delay her first appointment — starting care between 5–7 weeks is important. Now that the collaborative agreement is no longer in place, midwives can provide Medicare services without a referring doctor.</p>
   <p class="body">This early care is about flagging potential risk factors that could be prevented or managed early. For example: a client whose mum had pre-eclampsia, putting her at risk; a client with a high sugar diet who declines formal GTT, where HbA1c and BSL testing can be offered; a client with antiphospholipid syndrome requiring early obstetric consultation.</p>
-  <div class="qr-row"><div class="qr-box" id="qr41"></div><div class="qr-text"><div class="qr-title">LEAPP — Living Evidence for Australian Pregnancy and Postnatal care</div><div class="qr-url">https://livingevidence.org.au/living-guidelines/leapp/</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr42"></div><div class="qr-text"><div class="qr-title">Australian College of Midwives Antenatal Refresher course</div><div class="qr-url">https://midwives.org.au/ItemDetail?iProductCode=ANTENATAL&Category=ELEARN&WebsiteKey=6a4b152d-a1fa-424a-a2ac-22524da4d52f</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr41"></div><div class="qr-text"><div class="qr-title">LEAPP — Living Evidence for Australian Pregnancy and Postnatal care</div><a class="qr-url" href="https://livingevidence.org.au/living-guidelines/leapp/" target="_blank">https://livingevidence.org.au/living-guidelines/leapp/</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr42"></div><div class="qr-text"><div class="qr-title">Australian College of Midwives Antenatal Refresher course</div><a class="qr-url" href="https://midwives.org.au/ItemDetail?iProductCode=ANTENATAL&Category=ELEARN&WebsiteKey=6a4b152d-a1fa-424a-a2ac-22524da4d52f" target="_blank">https://midwives.org.au/ItemDetail?iProductCode=ANTENATAL&Category=ELEARN&WebsiteKey=6a4b152d-a1fa-424a-a2ac-22524da4d52f</a></div></div>
   <div class="activity-box">
     <div class="activity-label">Activity</div>
     <div class="activity-text">Workshop what an initial antenatal appointment will look like for a woman employing you as a first point of care. Create a checklist of exactly what you will do for her.</div>
@@ -971,7 +978,7 @@
   <div class="page-heading-box"><h1>Step 15 — Insurance, Medicare &amp; PBS</h1></div>
   <div class="step-pill"><div class="step-num">15</div>Insurance, Medicare and PBS</div>
   <p class="body">You must purchase professional indemnity insurance from MIGA for full coverage. In order to get the insurance product you must be an endorsed midwife. Check the policy wording for your state — in NSW the wording is clear that private practice and any midwife not employed through a service are not covered by the state nursing and midwifery council product.</p>
-  <div class="qr-row"><div class="qr-box" id="qr38"></div><div class="qr-text"><div class="qr-title">Your Insurance option — MIGA</div><div class="qr-url">https://www.miga.com.au/insurance/midwives</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr38"></div><div class="qr-text"><div class="qr-title">Your Insurance option — MIGA</div><a class="qr-url" href="https://www.miga.com.au/insurance/midwives" target="_blank">https://www.miga.com.au/insurance/midwives</a></div></div>
   <div class="section-title">Order of operations</div>
   <ul class="checklist">
     <li>Registered midwife</li>
@@ -984,8 +991,8 @@
     <li>Obtain pharmacology stationery / prescription pad</li>
   </ul>
   <div class="section-title">Recommended memberships</div>
-  <div class="qr-row"><div class="qr-box" id="qr39"></div><div class="qr-text"><div class="qr-title">Australian College of Midwives</div><div class="qr-url">https://midwives.org.au/Web/Web/Membership/MembershipTypes.aspx?hkey=decb87c0-d1bb-4d4b-a23b-7c7298134673</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr40"></div><div class="qr-text"><div class="qr-title">The Assembly of Rebellious Midwives</div><div class="qr-url">https://www.melaniethemidwife.com/assembly-sales</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr39"></div><div class="qr-text"><div class="qr-title">Australian College of Midwives</div><a class="qr-url" href="https://midwives.org.au/Web/Web/Membership/MembershipTypes.aspx?hkey=decb87c0-d1bb-4d4b-a23b-7c7298134673" target="_blank">https://midwives.org.au/Web/Web/Membership/MembershipTypes.aspx?hkey=decb87c0-d1bb-4d4b-a23b-7c7298134673</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr40"></div><div class="qr-text"><div class="qr-title">The Assembly of Rebellious Midwives</div><a class="qr-url" href="https://www.melaniethemidwife.com/assembly-sales" target="_blank">https://www.melaniethemidwife.com/assembly-sales</a></div></div>
   <div class="footer"><p>© Melanie the Midwife 2026</p></div>
 </div>
 
@@ -1095,7 +1102,7 @@
   <p class="body">The ACM Guidelines are a tool to prompt you to scenarios that may require consultation or referral. They are NOT a risk assessment tool. A midwife can care for a woman regardless of which category she falls into — A, B or C. Technically, if the woman accepts consultation and referral, she is complying with the guidelines.</p>
   <div class="pull"><p>"Always write a Record of Understanding if a woman is a category B or C, even if she accepts consultation and referral. This protects your practice if an incident occurs."</p></div>
   <p class="body">Up to 50% of private midwives have had a complaint lodged about them — most of which are completely vexatious. It is in your best interest to always keep documentation that will serve to protect you if you ever have to answer a complaint. What we know is that reports are most likely to be lodged by other health professionals, not by the woman herself.</p>
-  <div class="qr-row"><div class="qr-box" id="qr43"></div><div class="qr-text"><div class="qr-title">ACM Guidelines for Consultation and Referral</div><div class="qr-url">https://midwives.org.au/common/Uploaded%20files/Publications/ACM%20Guidelines%20for%20Consultation%20and%20Referral.pdf</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr43"></div><div class="qr-text"><div class="qr-title">ACM Guidelines for Consultation and Referral</div><a class="qr-url" href="https://midwives.org.au/common/Uploaded%20files/Publications/ACM%20Guidelines%20for%20Consultation%20and%20Referral.pdf" target="_blank">https://midwives.org.au/common/Uploaded%20files/Publications/ACM%20Guidelines%20for%20Consultation%20and%20Referral.pdf</a></div></div>
   <div class="activity-box">
     <div class="activity-label">Activity</div>
     <div class="activity-text">Let's talk about the medico-legal conversation. How will you approach the ACM Guidelines with your clients? What is your philosophy on risk and safety language?</div>
@@ -1130,7 +1137,7 @@
     <li>If you have been at the birth a long time and require rest</li>
     <li>Multiparous clients — consider calling earlier</li>
   </ul>
-  <div class="qr-row"><div class="qr-box" id="qr44"></div><div class="qr-text"><div class="qr-title">Safety and quality guidelines for private midwives</div><div class="qr-url">https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Safety-and-quality-guidelines-for-privately-practising-midwives.aspx</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr44"></div><div class="qr-text"><div class="qr-title">Safety and quality guidelines for private midwives</div><a class="qr-url" href="https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Safety-and-quality-guidelines-for-privately-practising-midwives.aspx" target="_blank">https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Safety-and-quality-guidelines-for-privately-practising-midwives.aspx</a></div></div>
   <div class="activity-box">
     <div class="activity-label">Activity</div>
     <div class="activity-text">Start a list of midwives who you might contact to act as your second midwife. Also put into writing your second midwife agreement — expectations, circumstances for calling, qualification requirements and fee structure.</div>
@@ -1207,13 +1214,13 @@
     <li>Hearing screen — can be done as an outpatient to the hospital the woman is booked into</li>
     <li>Hepatitis B vaccine — refer to GP; difficult to maintain cold-chain at home</li>
   </ul>
-  <p class="body" style="font-size:10.5px;color:#555;">For NBST cards: send an email to NewbornScreening@health.nsw.gov.au to order cards (this will differ by state). Have pre-addressed stamped envelopes ready so all you have to do is post the card.</p>
-  <div class="qr-row"><div class="qr-box" id="qr45"></div><div class="qr-text"><div class="qr-title">Paediatric Konakion MM IM/ORAL</div><div class="qr-url">https://www.nps.org.au/medicine-finder/konakion-mm-paediatric-solution</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr46"></div><div class="qr-text"><div class="qr-title">NSW Immunisation Schedule</div><div class="qr-url">https://www.health.nsw.gov.au/immunisation/Publications/nsw-immunisation-schedule.pdf</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr47"></div><div class="qr-text"><div class="qr-title">Hepatitis B Vaccination for your newborn baby</div><div class="qr-url">https://www.slhd.nsw.gov.au/RPA/WomenAndBabies/parentEducation/pdf/resources/3-Newborn-routine-screenings/Hepatitis%20B%20Vaccination%20for%20your%20newborn%20baby.pdf</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr48"></div><div class="qr-text"><div class="qr-title">Newborn bloodspot screening</div><div class="qr-url">https://www.health.nsw.gov.au/kidsfamilies/MCFhealth/Pages/tests-newborn-bloodspot.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr49"></div><div class="qr-text"><div class="qr-title">Child Blue Book</div><div class="qr-url">https://www.health.nsw.gov.au/kidsfamilies/MCFhealth/Pages/child-blue-book.aspx</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr50"></div><div class="qr-text"><div class="qr-title">Parent pack — Services Australia</div><div class="qr-url">https://www.servicesaustralia.gov.au/order-products?context=21</div></div></div>
+  <p class="body" style="font-size:10.5px;color:#555;">For NBST cards: send an email to <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eea08b998c819c80bd8d9c8b8b80878089ae868b8f829a86c0809d99c0898198c08f9b">[email&#160;protected]</a> to order cards (this will differ by state). Have pre-addressed stamped envelopes ready so all you have to do is post the card.</p>
+  <div class="qr-row"><div class="qr-box" id="qr45"></div><div class="qr-text"><div class="qr-title">Paediatric Konakion MM IM/ORAL</div><a class="qr-url" href="https://www.nps.org.au/medicine-finder/konakion-mm-paediatric-solution" target="_blank">https://www.nps.org.au/medicine-finder/konakion-mm-paediatric-solution</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr46"></div><div class="qr-text"><div class="qr-title">NSW Immunisation Schedule</div><a class="qr-url" href="https://www.health.nsw.gov.au/immunisation/Publications/nsw-immunisation-schedule.pdf" target="_blank">https://www.health.nsw.gov.au/immunisation/Publications/nsw-immunisation-schedule.pdf</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr47"></div><div class="qr-text"><div class="qr-title">Hepatitis B Vaccination for your newborn baby</div><a class="qr-url" href="https://www.slhd.nsw.gov.au/RPA/WomenAndBabies/parentEducation/pdf/resources/3-Newborn-routine-screenings/Hepatitis%20B%20Vaccination%20for%20your%20newborn%20baby.pdf" target="_blank">https://www.slhd.nsw.gov.au/RPA/WomenAndBabies/parentEducation/pdf/resources/3-Newborn-routine-screenings/Hepatitis%20B%20Vaccination%20for%20your%20newborn%20baby.pdf</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr48"></div><div class="qr-text"><div class="qr-title">Newborn bloodspot screening</div><a class="qr-url" href="https://www.health.nsw.gov.au/kidsfamilies/MCFhealth/Pages/tests-newborn-bloodspot.aspx" target="_blank">https://www.health.nsw.gov.au/kidsfamilies/MCFhealth/Pages/tests-newborn-bloodspot.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr49"></div><div class="qr-text"><div class="qr-title">Child Blue Book</div><a class="qr-url" href="https://www.health.nsw.gov.au/kidsfamilies/MCFhealth/Pages/child-blue-book.aspx" target="_blank">https://www.health.nsw.gov.au/kidsfamilies/MCFhealth/Pages/child-blue-book.aspx</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr50"></div><div class="qr-text"><div class="qr-title">Parent pack — Services Australia</div><a class="qr-url" href="https://www.servicesaustralia.gov.au/order-products?context=21" target="_blank">https://www.servicesaustralia.gov.au/order-products?context=21</a></div></div>
   <div class="footer"><p>© Melanie the Midwife 2026</p></div>
 </div>
 
@@ -1224,10 +1231,10 @@
   <p class="body">As private midwives we are required to submit perinatal data for each birth by 8 weeks postnatal — regardless of whether the birth occurred at home or in hospital. Each state and territory has its own perinatal data collection unit and system. You will need to contact the department in your state to get access to the online reporting system.</p>
   <div class="section-title">State-by-state contacts</div>
   <ul class="checklist">
-    <li><strong>VIC (VPDC):</strong> hdss.helpdesk@health.vic.gov.au — electronic file transfer or HealthCollect portal</li>
-    <li><strong>QLD (QPDC):</strong> PERIMAIL@health.qld.gov.au — Perinatal Online (PNO) system</li>
+    <li><strong>VIC (VPDC):</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8de5e9fefea3e5e8e1fde9e8fee6cde5e8ece1f9e5a3fbe4eea3eae2fba3ecf8">[email&#160;protected]</a> — electronic file transfer or HealthCollect portal</li>
+    <li><strong>QLD (QPDC):</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b5b4e5942464a42474b636e6a677f63257a676f256c647d256a7e">[email&#160;protected]</a> — Perinatal Online (PNO) system</li>
     <li><strong>NSW:</strong> Electronic submission to NSW Ministry of Health via LifeLink / Periform platform</li>
-    <li><strong>NT:</strong> PerinatalRegistry.DoH@nt.gov.au</li>
+    <li><strong>NT:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2c7c495e45424d584d407e494b455f585e55026843646c4258024b435a024d59">[email&#160;protected]</a></li>
     <li><strong>WA:</strong> Notification of births and deaths — WA Health website</li>
     <li><strong>SA, TAS, ACT:</strong> Contact your designated state-based perinatal form or online electronic system</li>
   </ul>
@@ -1244,14 +1251,14 @@
 <div class="page inner">
   <div class="page-heading-box"><h1>Registering the Birth of the Baby</h1></div>
   <p class="body">As a private midwife attending homebirths, you have the legal responsibility for registering the birth of the baby within 5 days of birth. Register as a care provider with your state Births Deaths and Marriages as soon as possible.</p>
-  <div class="qr-row"><div class="qr-box" id="qr51"></div><div class="qr-text"><div class="qr-title">NSW</div><div class="qr-url">https://www.nsw.gov.au/departments-and-agencies/births-deaths-marriages/business-partners/hospitals-and-medical-practitioners</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr52"></div><div class="qr-text"><div class="qr-title">VIC</div><div class="qr-url">https://www.bdm.vic.gov.au/independent-midwives</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr53"></div><div class="qr-text"><div class="qr-title">QLD</div><div class="qr-url">https://www.qld.gov.au/family/for-organisations/service-providers/maternity-staff-midwives</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr54"></div><div class="qr-text"><div class="qr-title">TAS</div><div class="qr-url">https://www.justice.tas.gov.au/bdm/contact-details</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr55"></div><div class="qr-text"><div class="qr-title">ACT</div><div class="qr-url">https://www.accesscanberra.act.gov.au/contact-us</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr56"></div><div class="qr-text"><div class="qr-title">SA</div><div class="qr-url">https://www.sa.gov.au/topics/family-and-community/births-deaths-and-marriages/register-a-birth</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr57"></div><div class="qr-text"><div class="qr-title">WA</div><div class="qr-url">https://www.wa.gov.au/organisation/department-of-justice/the-registry-of-births-deaths-and-marriages</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr58"></div><div class="qr-text"><div class="qr-title">NT</div><div class="qr-url">https://nt.gov.au/law/bdm/births-deaths-and-marriages-office-contacts</div></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr51"></div><div class="qr-text"><div class="qr-title">NSW</div><a class="qr-url" href="https://www.nsw.gov.au/departments-and-agencies/births-deaths-marriages/business-partners/hospitals-and-medical-practitioners" target="_blank">https://www.nsw.gov.au/departments-and-agencies/births-deaths-marriages/business-partners/hospitals-and-medical-practitioners</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr52"></div><div class="qr-text"><div class="qr-title">VIC</div><a class="qr-url" href="https://www.bdm.vic.gov.au/independent-midwives" target="_blank">https://www.bdm.vic.gov.au/independent-midwives</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr53"></div><div class="qr-text"><div class="qr-title">QLD</div><a class="qr-url" href="https://www.qld.gov.au/family/for-organisations/service-providers/maternity-staff-midwives" target="_blank">https://www.qld.gov.au/family/for-organisations/service-providers/maternity-staff-midwives</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr54"></div><div class="qr-text"><div class="qr-title">TAS</div><a class="qr-url" href="https://www.justice.tas.gov.au/bdm/contact-details" target="_blank">https://www.justice.tas.gov.au/bdm/contact-details</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr55"></div><div class="qr-text"><div class="qr-title">ACT</div><a class="qr-url" href="https://www.accesscanberra.act.gov.au/contact-us" target="_blank">https://www.accesscanberra.act.gov.au/contact-us</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr56"></div><div class="qr-text"><div class="qr-title">SA</div><a class="qr-url" href="https://www.sa.gov.au/topics/family-and-community/births-deaths-and-marriages/register-a-birth" target="_blank">https://www.sa.gov.au/topics/family-and-community/births-deaths-and-marriages/register-a-birth</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr57"></div><div class="qr-text"><div class="qr-title">WA</div><a class="qr-url" href="https://www.wa.gov.au/organisation/department-of-justice/the-registry-of-births-deaths-and-marriages" target="_blank">https://www.wa.gov.au/organisation/department-of-justice/the-registry-of-births-deaths-and-marriages</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr58"></div><div class="qr-text"><div class="qr-title">NT</div><a class="qr-url" href="https://nt.gov.au/law/bdm/births-deaths-and-marriages-office-contacts" target="_blank">https://nt.gov.au/law/bdm/births-deaths-and-marriages-office-contacts</a></div></div>
   <div class="footer"><p>© Melanie the Midwife 2026</p></div>
 </div>
 
@@ -1265,14 +1272,14 @@
 <div class="label">40 — Understanding Medicare</div>
 <div class="page inner">
   <div class="page-heading-box"><h1>Understanding Medicare</h1></div>
-  <p class="body">For any Medicare questions, email AskMBS@health.gov.au. To make Medicare claims, register for a PRODA account through Services Australia and integrate with TYRO Health for streamlined billing.</p>
-  <div class="qr-row"><div class="qr-box" id="qr59"></div><div class="qr-text"><div class="qr-title">MBS Online Information Resources</div><div class="qr-url">https://www.mbsonline.gov.au/</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr60"></div><div class="qr-text"><div class="qr-title">Eligible Midwife Medicare items and how to use them</div><div class="qr-url">https://www.servicesaustralia.gov.au/mbs-billing-rules-for-eligible-midwife-items?context=20</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr61"></div><div class="qr-text"><div class="qr-title">Midwife Medicare Item numbers</div><div class="qr-url">https://www9.health.gov.au/mbs/fullDisplay.cfm?type=note&q=MN.13.16&qt=noteID&criteria=midwives</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr62"></div><div class="qr-text"><div class="qr-title">About Bulk Billing</div><div class="qr-url">https://www.servicesaustralia.gov.au/about-bulk-billing-mbs-claims?context=20</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr63"></div><div class="qr-text"><div class="qr-title">Register for PRODA</div><div class="qr-url">https://www.servicesaustralia.gov.au/how-to-register-for-individual-proda-account?context=33786</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr64"></div><div class="qr-text"><div class="qr-title">How to use PRODA</div><div class="qr-url">https://www.servicesaustralia.gov.au/provider-digital-access-proda</div></div></div>
-  <div class="qr-row"><div class="qr-box" id="qr65"></div><div class="qr-text"><div class="qr-title">Look into TYRO here</div><div class="qr-url">https://www.tyrohealth.com/insurers/medicare/</div></div></div>
+  <p class="body">For any Medicare questions, email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="18596b73555a4b58707d79746c70367f776e36796d">[email&#160;protected]</a>. To make Medicare claims, register for a PRODA account through Services Australia and integrate with TYRO Health for streamlined billing.</p>
+  <div class="qr-row"><div class="qr-box" id="qr59"></div><div class="qr-text"><div class="qr-title">MBS Online Information Resources</div><a class="qr-url" href="https://www.mbsonline.gov.au/" target="_blank">https://www.mbsonline.gov.au/</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr60"></div><div class="qr-text"><div class="qr-title">Eligible Midwife Medicare items and how to use them</div><a class="qr-url" href="https://www.servicesaustralia.gov.au/mbs-billing-rules-for-eligible-midwife-items?context=20" target="_blank">https://www.servicesaustralia.gov.au/mbs-billing-rules-for-eligible-midwife-items?context=20</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr61"></div><div class="qr-text"><div class="qr-title">Midwife Medicare Item numbers</div><a class="qr-url" href="https://www9.health.gov.au/mbs/fullDisplay.cfm?type=note&q=MN.13.16&qt=noteID&criteria=midwives" target="_blank">https://www9.health.gov.au/mbs/fullDisplay.cfm?type=note&q=MN.13.16&qt=noteID&criteria=midwives</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr62"></div><div class="qr-text"><div class="qr-title">About Bulk Billing</div><a class="qr-url" href="https://www.servicesaustralia.gov.au/about-bulk-billing-mbs-claims?context=20" target="_blank">https://www.servicesaustralia.gov.au/about-bulk-billing-mbs-claims?context=20</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr63"></div><div class="qr-text"><div class="qr-title">Register for PRODA</div><a class="qr-url" href="https://www.servicesaustralia.gov.au/how-to-register-for-individual-proda-account?context=33786" target="_blank">https://www.servicesaustralia.gov.au/how-to-register-for-individual-proda-account?context=33786</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr64"></div><div class="qr-text"><div class="qr-title">How to use PRODA</div><a class="qr-url" href="https://www.servicesaustralia.gov.au/provider-digital-access-proda" target="_blank">https://www.servicesaustralia.gov.au/provider-digital-access-proda</a></div></div>
+  <div class="qr-row"><div class="qr-box" id="qr65"></div><div class="qr-text"><div class="qr-title">Look into TYRO here</div><a class="qr-url" href="https://www.tyrohealth.com/insurers/medicare/" target="_blank">https://www.tyrohealth.com/insurers/medicare/</a></div></div>
   <div class="footer"><p>© Melanie the Midwife 2026</p></div>
 </div>
 
@@ -1390,17 +1397,17 @@
     </div>
     <div class="back-bottom">
       <div>
-        <img src="mtm-logo.png" style="height:100px;width:auto;" alt="Melanie the Midwife logo"/>
+        <img src="mtm-logo.png" style="height:180px;width:auto;" alt="Melanie the Midwife logo"/>
         <div class="back-url">www.melaniethemidwife.com</div>
       </div>
-      <img src="podcast-logo.jpg" style="height:130px;width:auto;border-radius:4px;" alt="The Great Birth Rebellion Podcast"/>
+      <img src="podcast-logo.jpg" style="height:190px;width:auto;border-radius:8px;" alt="The Great Birth Rebellion Podcast"/>
     </div>
   </div>
 </div>
 
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 window.addEventListener('load', function() {
   var qrData = {
     'qr1': 'https://internationalmidwives.org/resources/international-definition-of-the-midwife/',
@@ -1420,65 +1427,4 @@ window.addEventListener('load', function() {
     'qr13': 'https://www.nursingmidwiferyboard.gov.au/Registration-Standards/Continuing-professional-development.aspx',
     'qr14': 'https://www.nursingmidwiferyboard.gov.au/Registration-Standards/Professional-indemnity-insurance-arrangements.aspx',
     'qr15': 'https://www.nursingmidwiferyboard.gov.au/Registration-Standards/Endorsement-for-scheduled-medicines-for-midwives.aspx',
-    'qr16': 'https://www.ahpra.gov.au/About-Ahpra/What-We-Do/National-Law.aspx',
-    'qr17': 'https://www.miga.com.au/insurance/midwives',
-    'qr18': 'https://midwives.org.au/common/Uploaded%20files/Publications/ACM%20Guidelines%20for%20Consultation%20and%20Referral.pdf',
-    'qr18b': 'https://midwives.org.au/Web/Web/C-R-Guidelines/Guidelines%20and%20Documents.aspx?hkey=555dfe4d-32d9-4fea-9826-f255e3335240',
-    'qr19': 'https://www.servicesaustralia.gov.au/mbs-billing-rules-for-eligible-midwife-items?context=20',
-    'qr20': 'https://www.amazon.com.au/Good-They-Cant-Ignore-You/dp/0349415862',
-    'qr21': 'https://www.ahpra.gov.au/Resources/Social-media-guidance.aspx',
-    'qr22': 'https://www.melaniethemidwife.com',
-    'qr23': 'https://business.gov.au/Guide/Starting?section=Beforeyoustart',
-    'qr24': 'https://www.ato.gov.au/businesses-and-organisations/starting-registering-or-closing-a-business/starting-your-own-business',
-    'qr25': 'https://business.gov.au/planning/new-businesses/choose-a-business-name',
-    'qr26': 'https://www.asic.gov.au/for-business-and-companies/business-names/register-a-business-name/',
-    'qr27': 'https://www.abr.gov.au/business-super-funds-charities/applying-abn',
-    'qr28': 'https://www.asic.gov.au/for-business-and-companies/companies/register-a-company/',
-    'qr29': 'https://www.sethgodin.com/',
-    'qr30': 'https://www.thriday.com.au/',
-    'qr31': 'https://www.xero.com/au/',
-    'qr32': 'https://simplybirth.com.au/',
-    'qr33': 'https://solmed.com.au/',
-    'qr34': 'https://www.medshop.com.au/',
-    'qr35': 'https://birthinternational.com/shop/',
-    'qr36': 'https://thebirthsling.com/?ref=GreatBirth',
-    'qr37': 'https://elletens.com.au/?elle=melaniethemidwife',
-    'qr38': 'https://www.miga.com.au/insurance/midwives',
-    'qr39': 'https://midwives.org.au/Web/Web/Membership/MembershipTypes.aspx?hkey=decb87c0-d1bb-4d4b-a23b-7c7298134673',
-    'qr40': 'https://www.melaniethemidwife.com/assembly-sales',
-    'qr41': 'https://livingevidence.org.au/living-guidelines/leapp/',
-    'qr42': 'https://midwives.org.au/ItemDetail?iProductCode=ANTENATAL&Category=ELEARN&WebsiteKey=6a4b152d-a1fa-424a-a2ac-22524da4d52f',
-    'qr43': 'https://midwives.org.au/common/Uploaded%20files/Publications/ACM%20Guidelines%20for%20Consultation%20and%20Referral.pdf',
-    'qr44': 'https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Safety-and-quality-guidelines-for-privately-practising-midwives.aspx',
-    'qr45': 'https://www.nps.org.au/medicine-finder/konakion-mm-paediatric-solution',
-    'qr46': 'https://www.health.nsw.gov.au/immunisation/Publications/nsw-immunisation-schedule.pdf',
-    'qr47': 'https://www.slhd.nsw.gov.au/RPA/WomenAndBabies/parentEducation/pdf/resources/3-Newborn-routine-screenings/Hepatitis%20B%20Vaccination%20for%20your%20newborn%20baby.pdf',
-    'qr48': 'https://www.health.nsw.gov.au/kidsfamilies/MCFhealth/Pages/tests-newborn-bloodspot.aspx',
-    'qr49': 'https://www.health.nsw.gov.au/kidsfamilies/MCFhealth/Pages/child-blue-book.aspx',
-    'qr50': 'https://www.servicesaustralia.gov.au/order-products?context=21',
-    'qr51': 'https://www.nsw.gov.au/departments-and-agencies/births-deaths-marriages/business-partners/hospitals-and-medical-practitioners',
-    'qr52': 'https://www.bdm.vic.gov.au/independent-midwives',
-    'qr53': 'https://www.qld.gov.au/family/for-organisations/service-providers/maternity-staff-midwives',
-    'qr54': 'https://www.justice.tas.gov.au/bdm/contact-details',
-    'qr55': 'https://www.accesscanberra.act.gov.au/contact-us',
-    'qr56': 'https://www.sa.gov.au/topics/family-and-community/births-deaths-and-marriages/register-a-birth',
-    'qr57': 'https://www.wa.gov.au/organisation/department-of-justice/the-registry-of-births-deaths-and-marriages',
-    'qr58': 'https://nt.gov.au/law/bdm/births-deaths-and-marriages-office-contacts',
-    'qr59': 'https://www.mbsonline.gov.au/',
-    'qr60': 'https://www.servicesaustralia.gov.au/mbs-billing-rules-for-eligible-midwife-items?context=20',
-    'qr61': 'https://www9.health.gov.au/mbs/fullDisplay.cfm?type=note&q=MN.13.16&qt=noteID&criteria=midwives',
-    'qr62': 'https://www.servicesaustralia.gov.au/about-bulk-billing-mbs-claims?context=20',
-    'qr63': 'https://www.servicesaustralia.gov.au/how-to-register-for-individual-proda-account?context=33786',
-    'qr64': 'https://www.servicesaustralia.gov.au/provider-digital-access-proda',
-    'qr65': 'https://www.tyrohealth.com/insurers/medicare/'
-  };
-  for (var id in qrData) {
-    var el = document.getElementById(id);
-    if (el) {
-      new QRCode(el, { text: qrData[id], width: 52, height: 52, colorDark: '#334D4A', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
-    }
-  }
-});
-</script>
-</body>
-</html>
+    'qr16': 'https://www.ahpra.gov.au/About-A
