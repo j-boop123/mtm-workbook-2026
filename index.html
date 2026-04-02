@@ -41,8 +41,8 @@
   .section-title { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #334D4A; margin: 16px 0 8px; }
 
   .checklist { list-style: none; margin-bottom: 12px; }
-  .checklist li { font-size: 11.5px; color: #222; padding: 6px 0; border-bottom: 0.5px solid #f0ebe6; display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; }
-  .checklist li::before { content: ''; width: 13px; height: 13px; border: 1.5px solid #FED3DC; border-radius: 3px; flex-shrink: 0; margin-top: 3px; }
+  .checklist li { font-size: 11.5px; color: #222; padding: 6px 0 6px 23px; border-bottom: 0.5px solid #f0ebe6; position: relative; line-height: 1.6; }
+  .checklist li::before { content: ''; width: 13px; height: 13px; border: 1.5px solid #FED3DC; border-radius: 3px; position: absolute; left: 0; top: 9px; }
 
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
   .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 12px 0; }
@@ -56,6 +56,9 @@
 
   .highlight-box { background: #334D4A; border-radius: 4px; padding: 13px 17px; margin: 12px 0; }
   .highlight-box p { font-size: 11px; color: rgba(255,255,255,0.88); line-height: 1.8; }
+  .highlight-box a { color: #FED3DC; text-decoration: underline; }
+  .highlight-box strong { color: #FED3DC; }
+
   .highlight-box strong { color: #FED3DC; font-weight: 600; }
 
   .session-table { width: 100%; border-collapse: collapse; margin: 10px 0 12px; font-size: 11px; }
@@ -206,8 +209,8 @@
     <li>Live 4-day workshop — Wednesday May 6th to Saturday May 9th, in person or via live stream. Recorded and posted on your platform indefinitely. This book accompanies the live session — your personal business planning book. Guard it with your life!</li>
     <li>Online mentorship platform at melaniethemidwife.com — recordings, downloads, Record of Understanding templates, and active comment sections.</li>
     <li>7 monthly live mentorship sessions, June through December — 2 hours each, recorded.</li>
-    <li>Email access to Mel at <a href="mailto:mel&#64;melaniethemidwife.com">mel&#64;melaniethemidwife.com</a> throughout 2026. You may also hear from Julia (<a href="mailto:julia&#64;melaniethemidwife.com">julia&#64;melaniethemidwife.com</a>) or Dan (<a href="mailto:daniel&#64;melaniethemidwife.com">daniel&#64;melaniethemidwife.com</a>) who provide organisational and technical support — they are friendly, don't bite, and you are welcome to reach out to them anytime. Note: Mel can provide support via email but is unable to offer real-time clinical support for medical matters; this is not an on-call arrangement.</li>
-    <li>WhatsApp group for daily connection with your cohort — opt in or out anytime. If you are not yet in the WhatsApp chat, email <a href="mailto:julia&#64;melaniethemidwife.com">julia&#64;melaniethemidwife.com</a> to be included.</li>
+    <li>Email access to Mel at mel&#64;melaniethemidwife.com throughout 2026. You may also hear from Julia (julia&#64;melaniethemidwife.com) or Dan (daniel&#64;melaniethemidwife.com) who provide organisational and technical support — they are friendly, don't bite, and you are welcome to reach out to them anytime. Note: Mel can provide support via email but is unable to offer real-time clinical support for medical matters; this is not an on-call arrangement.</li>
+    <li>WhatsApp group for daily connection with your cohort — opt in or out anytime. If you are not yet in the WhatsApp chat, email julia&#64;melaniethemidwife.com to be included.</li>
     <li>Invitation to the ongoing Maintenance Program at completion — over 50 midwives in your inner circle to help you keep going.</li>
   </ul>
   <div class="two-col">
@@ -341,7 +344,7 @@
   <div class="section-title">Key benefits for your practice</div>
   <ul class="checklist">
     <li><strong>Secure Client Information:</strong> Use Google Drive to store antenatal records, blood results, and birth plans with strict "View Only" or "Editor" permissions.</li>
-    <li><strong>Professional Identity:</strong> An email like <a href="mailto:care&#64;yourname.com.au">care&#64;yourname.com.au</a> signals to hospitals, GPs, and Medicare that you are a registered, professional healthcare provider.</li>
+    <li><strong>Professional Identity:</strong> An email like care&#64;yourname.com.au signals to hospitals, GPs, and Medicare that you are a registered, professional healthcare provider.</li>
     <li><strong>Mobile Clinical Notes:</strong> Access your files securely on any device.</li>
     <li><strong>Seamless Intake with Google Forms:</strong> Send clients a digital intake form — health histories and consent forms feed directly into a private spreadsheet.</li>
     <li><strong>Telehealth Ready:</strong> Google Meet offers secure, encrypted video calling easy for clients to use without downloading extra software. You can enable Gemini notes for a transcript and summary of the appointment.</li>
@@ -360,7 +363,7 @@
     <li>Sign up for Google Workspace (Business Standard or Business Plus recommended)</li>
     <li>Verify domain ownership by adding a TXT record to your DNS settings</li>
     <li>Set up MX records in your domain provider to route emails to Gmail</li>
-    <li>Create your professional email address (e.g. <a href="mailto:hello&#64;yourpractice.com.au">hello&#64;yourpractice.com.au</a>)</li>
+    <li>Create your professional email address (e.g. hello&#64;yourpractice.com.au)</li>
     <li>Enable 2-Step Verification (2FA) for all accounts — critical for APP compliance</li>
     <li>Navigate to Admin Console &gt; Billing &gt; Legal and Compliance</li>
     <li>Review and accept the Cloud Data Processing Addendum (CDPA)</li>
@@ -895,13 +898,13 @@
   </div>
   <div class="section-title">Digital notes platforms</div>
   <ul class="link-list">
-    <li><a href="https://www.halaxy.com">Halaxy — halaxy.com</a></li>
-    <li><a href="https://www.mobilemidwife.com">Mobile Midwife — mobilemidwife.com</a></li>
-    <li><a href="https://www.cliniko.com">Cliniko — cliniko.com</a></li>
-    <li><a href="https://www.expectmaternity.com.au">Expect — expectmaternity.com.au</a></li>
-    <li><a href="https://clientcare.net/">Client Care — clientcare.net</a></li>
-    <li><a href="https://splose.com">Splose — splose.com</a></li>
-    <li><a href="https://www.heidihealth.com/en-au">Heidi (AI note keeping) — heidihealth.com</a></li>
+    <li>Halaxy — halaxy.com</li>
+    <li>Mobile Midwife — mobilemidwife.com</li>
+    <li>Cliniko — cliniko.com</li>
+    <li>Expect — expectmaternity.com.au</li>
+    <li>Client Care — clientcare.net</li>
+    <li>Splose — splose.com</li>
+    <li>Heidi (AI note keeping) — heidihealth.com</li>
   </ul>
   <div class="section-title">Other helpful apps</div>
   <ul class="link-list">
@@ -1223,10 +1226,10 @@
   <p class="body">As private midwives we are required to submit perinatal data for each birth by 8 weeks postnatal — regardless of whether the birth occurred at home or in hospital. Each state and territory has its own perinatal data collection unit and system. You will need to contact the department in your state to get access to the online reporting system.</p>
   <div class="section-title">State-by-state contacts</div>
   <ul class="checklist">
-    <li><strong>VIC (VPDC):</strong> <a href="mailto:hdss.helpdesk&#64;health.vic.gov.au">hdss.helpdesk&#64;health.vic.gov.au</a> — electronic file transfer or HealthCollect portal</li>
-    <li><strong>QLD (QPDC):</strong> <a href="mailto:PERIMAIL&#64;health.qld.gov.au">PERIMAIL&#64;health.qld.gov.au</a> — Perinatal Online (PNO) system</li>
+    <li><strong>VIC (VPDC):</strong> hdss.helpdesk&#64;health.vic.gov.au — electronic file transfer or HealthCollect portal</li>
+    <li><strong>QLD (QPDC):</strong> PERIMAIL&#64;health.qld.gov.au — Perinatal Online (PNO) system</li>
     <li><strong>NSW:</strong> Electronic submission to NSW Ministry of Health via LifeLink / Periform platform</li>
-    <li><strong>NT:</strong> <a href="mailto:PerinatalRegistry.DoH&#64;nt.gov.au">PerinatalRegistry.DoH&#64;nt.gov.au</a></li>
+    <li><strong>NT:</strong> PerinatalRegistry.DoH&#64;nt.gov.au</li>
     <li><strong>WA:</strong> Notification of births and deaths — WA Health website</li>
     <li><strong>SA, TAS, ACT:</strong> Contact your designated state-based perinatal form or online electronic system</li>
   </ul>
@@ -1380,11 +1383,11 @@
     <div class="back-top">
       <h2>For more audacious resources, follow along:</h2>
       <ul class="back-links">
-        <li><a href="https://www.melaniethemidwife.com">www.melaniethemidwife.com</a></li>
-        <li><a href="https://www.thegreatbirthrebellion.com">www.thegreatbirthrebellion.com</a></li>
-        <li><a href="https://www.instagram.com/melaniethemidwife">@melaniethemidwife</a></li>
-        <li><a href="https://www.instagram.com/thegreatbirthrebellion">@thegreatbirthrebellion</a></li>
-        <li><a href="https://www.youtube.com/@MelanieTheMidwife">Melanie the Midwife Youtube</a></li>
+        <li>www.melaniethemidwife.com</li>
+        <li>www.thegreatbirthrebellion.com</li>
+        <li>@melaniethemidwife</li>
+        <li>@thegreatbirthrebellion</li>
+        <li>Melanie the Midwife Youtube</li>
       </ul>
     </div>
     <div class="back-bottom">
