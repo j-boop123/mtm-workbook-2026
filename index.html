@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @media screen {
+    body { background: #c8c4c0; padding: 30px; font-family: 'Nunito', sans-serif; }
+    .stack { display: flex; flex-direction: column; gap: 50px; align-items: center; }
+    .label { font-size: 10px; color: #888; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; align-self: center; }
+    .page { width: 620px; min-height: 877px; background: #fff; box-shadow: 0 6px 32px rgba(0,0,0,0.15); display: flex; flex-direction: column; overflow: hidden; position: relative; }
+  }
+
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+    body { background: white; padding: 0; margin: 0; }
+    .stack { display: block; }
+    .label { display: none; }
+    .page { width: 100%; min-height: 100vh; height: 100vh; page-break-after: always; break-after: page; display: flex; flex-direction: column; overflow: hidden; position: relative; box-shadow: none; }
+    .page:last-child { page-break-after: avoid; break-after: avoid; }
+    @page { size: A4; margin: 0; }
+  }
+
+  .bind-guide { position: absolute; top: 0; bottom: 0; left: 93px; width: 1px; background: rgba(180,160,160,0.15); pointer-events: none; z-index: 10; }
+
+  /* COVER & BACK */
+  .cover { background: #334D4A; padding: 14px; }
+  .cover-inner { border: 1px solid rgba(254,211,220,0.35); border-radius: 4px; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 52px 44px 44px; min-height: 849px; }
+  .cover-title { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 900; color: #FED3DC; line-height: 1.1; text-align: center; margin-bottom: 28px; letter-spacing: -0.01em; }
+  .cover-belongs-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #FED3DC; text-align: center; margin-bottom: 12px; }
+  .cover-name-box { background: #f5f0e8; border-radius: 4px; height: 36px; width: 240px; margin: 0 auto; }
+
+  /* INNER PAGES */
+  .inner { padding: 54px 54px 40px 93px; }
+
+  .page-heading-box { margin-bottom: 22px; width: 100%; padding-bottom: 12px; border-bottom: 2px solid #FED3DC; }
+  .page-heading-box h1 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #334D4A; text-align: left; letter-spacing: -0.01em; }
+
+  .subheading { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #334D4A; margin: 18px 0 8px; }
+
+  .body { font-size: 11.5px; line-height: 1.85; color: #222; font-weight: 400; margin-bottom: 12px; }
+
+  .pull { border-left: 3px solid #FED3DC; padding: 10px 16px; margin: 14px 0; background: #fffbfc; }
+  .pull p { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: #334D4A; line-height: 1.6; }
+
+  .section-title { font-size: 9.5px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #334D4A; margin: 16px 0 8px; }
+
+  .checklist { list-style: none; margin-bottom: 12px; }
+  .checklist li { font-size: 11px; color: #222; padding: 6px 0; border-bottom: 0.5px solid #f0ebe6; display: flex; align-items: flex-start; gap: 10px; line-height: 1.55; }
+  .checklist li::before { content: ''; width: 12px; height: 12px; border: 1.5px solid #FED3DC; border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 12px 0; }
+
+  .field-box { border: 0.5px solid #ccc; border-radius: 4px; padding: 11px 14px; }
+  .field-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #334D4A; margin-bottom: 8px; }
+  .write-line { border-bottom: 1px solid #f0d8de; height: 36px; }
+
+  .activity-box { border: 1px solid #FED3DC; border-radius: 4px; padding: 16px 18px; margin: 14px 0; background: #fffbfc; }
+  .activity-label { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #fff; background: #334D4A; display: inline-block; padding: 3px 10px; border-radius: 3px; margin-bottom: 10px; }
+  .activity-text { font-size: 11px; color: #333; line-height: 1.7; margin-bottom: 12px; }
+
+  /* Generous writing lines — use inside activity boxes or standalone */
+  .lines-half { margin-top: 4px; }
+  .lines-half .write-line { height: 36px; border-bottom: 1px solid #f0d8de; }
+  .lines-full { margin-top: 4px; flex: 1; }
+  .lines-full .write-line { height: 36px; border-bottom: 1px solid #f0d8de; }
+
+  .highlight-box { background: #334D4A; border-radius: 4px; padding: 13px 17px; margin: 12px 0; }
+  .highlight-box p { font-size: 11px; color: rgba(255,255,255,0.88); line-height: 1.8; }
+  .highlight-box strong { color: #FED3DC; font-weight: 600; }
+
+  .session-table { width: 100%; border-collapse: collapse; margin: 10px 0 12px; font-size: 11px; }
+  .session-table th { background: #334D4A; color: #FED3DC; padding: 7px 12px; text-align: left; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
+  .session-table td { padding: 6px 12px; color: #222; border-bottom: 0.5px solid #f0ebe6; }
+  .session-table tr:nth-child(even) td { background: #fafaf9; }
+
+  .skills-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 11px; }
+  .skills-table th { background: #334D4A; color: #FED3DC; padding: 7px 12px; text-align: left; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .skills-table td { padding: 32px 12px 8px; border: 0.5px solid #e8e0da; vertical-align: top; font-size: 11px; color: #555; }
+
+  .step-pill { display: inline-flex; align-items: center; gap: 8px; background: #334D4A; color: #fff; font-size: 11px; padding: 4px 14px 4px 4px; border-radius: 20px; margin-bottom: 12px; }
+  .step-num { background: #FED3DC; color: #334D4A; font-weight: 700; font-size: 11px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+  .link-list { list-style: none; margin: 8px 0 14px; }
+  .link-list li { font-size: 10.5px; padding: 4px 0; border-bottom: 0.5px solid #f0ebe6; }
+  .link-list li a { color: #2A4061; text-decoration: underline; }
+
+  .footer { margin-top: auto; padding-top: 12px; border-top: 0.5px solid #e0d8d2; text-align: right; }
+  .footer p { font-size: 9.5px; color: #aaa; }
+
+  /* NOTES PAGE */
+  .notes-lines { flex: 1; display: flex; flex-direction: column; margin-top: 8px; }
+  .notes-lines .write-line { height: 40px; border-bottom: 1px solid #f0d8de; }
+
+  /* BACK */
+  .back { background: #334D4A; padding: 14px; }
+  .back-inner { min-height: 849px; display: flex; flex-direction: column; justify-content: space-between; padding: 52px 52px 48px 93px; }
+  .back-top h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #FED3DC; margin-bottom: 20px; }
+  .back-links { list-style: none; }
+  .back-links li { margin-bottom: 8px; }
+  .back-links li a { font-size: 12.5px; color: rgba(254,211,220,0.85); text-decoration: underline; }
+  .back-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+  .back-logo-text { font-family: 'Playfair Display', serif; font-size: 50px; font-weight: 900; color: #FED3DC; line-height: 0.95; }
+  .back-url { font-size: 11px; color: rgba(254,211,220,0.5); margin-top: 8px; }
+  .podcast-placeholder { width: 130px; height: 130px; background: rgba(254,211,220,0.08); border: 1px solid rgba(254,211,220,0.25); border-radius: 4px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 12px; }
+  .podcast-placeholder span { font-size: 9px; color: rgba(254,211,220,0.5); letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="stack">
+
+<!-- ═══ COVER ═══ -->
+<div class="label">Page 1 — Cover</div>
+<div class="page cover">
+  <div class="cover-inner">
+    <div style="text-align:center;width:100%;">
+      <div class="cover-title">Launch yourself into<br>private practice Midwifery</div>
+      <svg width="290" height="175" viewBox="0 0 290 175" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto 44px;">
+        <line x1="145" y1="26" x2="5"   y2="175" stroke="#FED3DC" stroke-width="1.3"/>
+        <line x1="145" y1="26" x2="30"  y2="175" stroke="#FED3DC" stroke-width="1.3"/>
+        <line x1="145" y1="26" x2="57"  y2="175" stroke="#FED3DC" stroke-width="1.3"/>
+        <line x1="145" y1="26" x2="82"  y2="175" stroke="#FED3DC" stroke-width="1.3"/>
+        <line x1="145" y1="26" x2="104" y2="175" stroke="#FED3DC" stroke-width="1.3"/>
+        <line x1="145" y1="26" x2="123" y2="175" stroke="#FED3DC" stroke-width="1.3"/>
+        <line x1="145" y1="26" x2="145" y2="175" stroke="#FED3DC" stroke-width="1.3"/>
+        <line x1="145" y1="26" x2="167" y2="175" stroke="#FED3DC" stroke-width="1.3"/>
+        <line x1="145" y1="26" x2="186" y2="175" stroke="#FED3DC" stroke-width="1.3"/>
+        <line x1="145" y1="26" x2="208" y2="175" stroke="#FED3DC" stroke-width="1.3"/>
+        <line x1="145" y1="26" x2="233" y2="175" stroke="#FED3DC" stroke-width="1.3"/>
+        <line x1="145" y1="26" x2="260" y2="175" stroke="#FED3DC" stroke-width="1.3"/>
+        <line x1="145" y1="26" x2="285" y2="175" stroke="#FED3DC" stroke-width="1.3"/>
+        <line x1="145" y1="26" x2="2"   y2="118" stroke="#FED3DC" stroke-width="1.1"/>
+        <line x1="145" y1="26" x2="288" y2="118" stroke="#FED3DC" stroke-width="1.1"/>
+        <line x1="145" y1="26" x2="2"   y2="72"  stroke="#FED3DC" stroke-width="1"/>
+        <line x1="145" y1="26" x2="288" y2="72"  stroke="#FED3DC" stroke-width="1"/>
+        <line x1="8"   y1="26" x2="282" y2="26"  stroke="#FED3DC" stroke-width="1.1"/>
+        <circle cx="145" cy="26" r="12" fill="#C78C27"/>
+        <circle cx="145" cy="26" r="7"  fill="#FF9B7D"/>
+      </svg>
+    </div>
+    <div style="text-align:center;width:100%;">
+      <div class="cover-belongs-title">This Business Bible Belongs to:</div>
+      <div class="cover-name-box"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MEET YOUR COHORT ═══ -->
+<div class="label">Page 2 — Meet your cohort</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Meet your cohort</h1></div>
+  <p class="body" style="font-size:10.5px;color:#888;margin-bottom:14px;">Use the notes column to jot down location, phone, Instagram or anything useful!</p>
+  <table style="width:100%;border-collapse:collapse;">
+    <thead>
+      <tr>
+        <th style="background:#334D4A;color:#FED3DC;padding:8px 10px;text-align:left;font-size:8.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;width:30%;">Name</th>
+        <th style="background:#334D4A;color:#FED3DC;padding:8px 10px;text-align:left;font-size:8.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;width:32%;">Email</th>
+        <th style="background:#334D4A;color:#FED3DC;padding:8px 10px;text-align:left;font-size:8.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;width:38%;">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Elo Ayemite Magbegor</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">elo.magbegor@hotmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background-image:repeating-linear-gradient(transparent,transparent 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr style="background:#fff8f9;"><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Barbara Pretel</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">barbarapretel@gmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background:#fff8f9;background-image:repeating-linear-gradient(#fff8f9,#fff8f9 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Chantelle Maree Ragg</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">chantelle.ragg@yahoo.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background-image:repeating-linear-gradient(transparent,transparent 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr style="background:#fff8f9;"><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Kate Bartlett</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">kateb.85@hotmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background:#fff8f9;background-image:repeating-linear-gradient(#fff8f9,#fff8f9 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Krystal Dicketts</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">sacredsixbirtheducation@gmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background-image:repeating-linear-gradient(transparent,transparent 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr style="background:#fff8f9;"><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Mikaela</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">midwifemikaela185@gmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background:#fff8f9;background-image:repeating-linear-gradient(#fff8f9,#fff8f9 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Christie Taylor</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">christie.taylor@gmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background-image:repeating-linear-gradient(transparent,transparent 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr style="background:#fff8f9;"><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Melanie Archbold</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">melaniearchbold72@gmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background:#fff8f9;background-image:repeating-linear-gradient(#fff8f9,#fff8f9 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Jessica Clark</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">jessica.c.clark86@gmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background-image:repeating-linear-gradient(transparent,transparent 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr style="background:#fff8f9;"><td style="padding:10px;font-size:11px;font-weight:600;color:#334D4A;">Roslyn Callaghan</td><td style="padding:10px;font-size:10px;color:#555;">roslyncallaghan@me.com</td><td style="padding:10px;background:#fff8f9;background-image:repeating-linear-gradient(#fff8f9,#fff8f9 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+    </tbody>
+  </table>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<div class="label">Page 3 — Meet your cohort (continued)</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Meet your cohort</h1></div>
+  <p class="body" style="font-size:10.5px;color:#888;margin-bottom:14px;">Use the notes column to jot down location, phone, Instagram or anything useful!</p>
+  <table style="width:100%;border-collapse:collapse;">
+    <thead>
+      <tr>
+        <th style="background:#334D4A;color:#FED3DC;padding:8px 10px;text-align:left;font-size:8.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;width:30%;">Name</th>
+        <th style="background:#334D4A;color:#FED3DC;padding:8px 10px;text-align:left;font-size:8.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;width:32%;">Email</th>
+        <th style="background:#334D4A;color:#FED3DC;padding:8px 10px;text-align:left;font-size:8.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;width:38%;">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Chantelle Woodhouse</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">chantelle.woodhouse@hotmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background-image:repeating-linear-gradient(transparent,transparent 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr style="background:#fff8f9;"><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Isabel Silvis</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">belsilvis@gmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background:#fff8f9;background-image:repeating-linear-gradient(#fff8f9,#fff8f9 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Kate Hoeben</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">katehoeben@hotmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background-image:repeating-linear-gradient(transparent,transparent 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr style="background:#fff8f9;"><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Meg Hitchick</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">meg.hitchick@gmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background:#fff8f9;background-image:repeating-linear-gradient(#fff8f9,#fff8f9 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Alexa Nguyen</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">alexanguyen321@gmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background-image:repeating-linear-gradient(transparent,transparent 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr style="background:#fff8f9;"><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Caroline Hurnen</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">rbfcaro95@gmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background:#fff8f9;background-image:repeating-linear-gradient(#fff8f9,#fff8f9 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Olivia Gross</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">liv.0645@gmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background-image:repeating-linear-gradient(transparent,transparent 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr style="background:#fff8f9;"><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Grace Newton</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">grace_newton2@hotmail.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background:#fff8f9;background-image:repeating-linear-gradient(#fff8f9,#fff8f9 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+      <tr><td style="padding:10px;font-size:11px;border-bottom:0.5px solid #f0e8ec;font-weight:600;color:#334D4A;">Melanie Jackson</td><td style="padding:10px;font-size:10px;border-bottom:0.5px solid #f0e8ec;color:#555;">mel@melaniethemidwife.com</td><td style="padding:10px;border-bottom:0.5px solid #f0e8ec;background-image:repeating-linear-gradient(transparent,transparent 28px,#f0d8de 28px,#f0d8de 29px);height:46px;"></td></tr>
+    </tbody>
+  </table>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ MODULE 1 NOTES ═══ -->
+<div class="label">Module 1 Notes — Page 1</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+<div class="label">Module 1 Notes — Page 2</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ ABOUT MEL ═══ -->
+<div class="label">Page — Meet your mentor</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Hi! I'm Dr Melanie Jackson, your new mentor</h1></div>
+  <!-- MEL PHOTO: replace the src below with the hosted image URL when available -->
+  <div style="width:100%;height:200px;background:#e8e4e0;border-radius:4px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;">
+    <span style="font-size:10px;color:#999;letter-spacing:0.1em;text-transform:uppercase;">Add Mel's photo here — replace this div with an img tag</span>
+  </div>
+  <p class="body">I have been a registered nurse since 2007 and a registered midwife since 2008, having completed a Masters in Nursing and a postgraduate degree in Midwifery. After completing midwifery at the top of my class, I was invited to complete a PhD at Western Sydney University under the supervision of Prof. Hannah Dahlen and Prof. Virginia Schmied.</p>
+  <p class="body">I completed my thesis <em>'Birthing outside the system: wanting the best and safest'</em> in 2014 — all while having my first baby in 2013, juggling private practice, a PhD, and building a house!</p>
+  <div class="pull"><p>"I am no stranger to hard work or business. I started my first business at 18 as a massage therapist — and I have been building ever since."</p></div>
+  <p class="body">I am the CEO of 'Melanie the Midwife' — including my clinical work, the Great Birth Rebellion podcast, the Assembly of Rebellious Midwives, online education programs, and this mentorship. This mentorship will help you launch yourself into private practice just as I did, drawing on 22 years of business experience.</p>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ INTRODUCING THE MENTORSHIP ═══ -->
+<div class="label">Page — Introducing the mentorship</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Introducing the Mentorship</h1></div>
+  <p class="body">Welcome to the 2026 'Launch yourself into private practice mentorship'. Running since 2021, over 180 midwives have joined with 50 continuing into the maintenance program.</p>
+  <div class="section-title">What's included</div>
+  <ul class="checklist">
+    <li>Live 4-day workshop — Wednesday May 6th to Saturday May 9th, in person or via live stream. Recorded and available on your platform indefinitely.</li>
+    <li>Online mentorship platform at melaniethemidwife.com — recordings, downloads, Record of Understanding templates, and active comment sections.</li>
+    <li>7 monthly live mentorship sessions, June through December — 2 hours each, recorded.</li>
+    <li>Email access to Mel at mel@melaniethemidwife.com throughout 2026.</li>
+    <li>WhatsApp group for daily connection with your cohort — opt in or out anytime.</li>
+    <li>Invitation to the ongoing Maintenance Program at completion.</li>
+  </ul>
+  <div class="two-col">
+    <div class="field-box"><div class="field-label">Platform username</div><div class="write-line"></div></div>
+    <div class="field-box"><div class="field-label">Platform password</div><div class="write-line"></div></div>
+  </div>
+  <p class="body" style="font-size:10.5px;color:#555;margin-top:8px;">Privacy note: do not share your login or allow others to view the platform. Breach of confidentiality results in withdrawal without refund.</p>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ SESSION DATES ═══ -->
+<div class="label">Page — Monthly session dates</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Monthly Live Mentorship Sessions</h1></div>
+  <p class="body">Log in at melaniethemidwife.com and hit 'join live session'. All times are Sydney time — add these to your diary now.</p>
+  <table class="session-table">
+    <thead><tr><th>#</th><th>Date</th><th>Time</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Tuesday 2 June</td><td>1:30 pm – 3:30 pm</td></tr>
+      <tr><td>2</td><td>Wednesday 8 July</td><td>10:00 am – 12:00 pm</td></tr>
+      <tr><td>3</td><td>Wednesday 12 August</td><td>1:30 pm – 3:30 pm</td></tr>
+      <tr><td>4</td><td>Thursday 10 September</td><td>10:00 am – 12:00 pm</td></tr>
+      <tr><td>5</td><td>Thursday 8 October</td><td>1:30 pm – 3:30 pm</td></tr>
+      <tr><td>6</td><td>Tuesday 3 November</td><td>10:00 am – 12:00 pm</td></tr>
+      <tr><td>7</td><td>Wednesday 2 December</td><td>1:30 pm – 3:30 pm</td></tr>
+    </tbody>
+  </table>
+  <div class="highlight-box">
+    <p><strong>Contact the team</strong><br>Mel — mel@melaniethemidwife.com<br>Julia — julia@melaniethemidwife.com<br>Dan — daniel@melaniethemidwife.com</p>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ MODULE 2 NOTES ═══ -->
+<div class="label">Module 2 Notes — Page 1</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+<div class="label">Module 2 Notes — Page 2</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ WHAT IT MEANS TO BE A PRIVATE MIDWIFE ═══ -->
+<div class="label">Page — What it means to be a private practice midwife</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>What does it mean to be a private practice midwife?</h1></div>
+  <p class="body">The International Confederation of Midwives defines a midwife as a person who has successfully completed a midwifery education programme, acquired the requisite qualifications to be registered and/or legally licensed to practice midwifery, and who demonstrates competency in the scope of practice of the midwife.</p>
+  <div class="pull"><p>"The midwife is recognised as a responsible and accountable professional, who works in partnership with women to give the necessary support, care and advice during pregnancy, labour and the postpartum period."</p></div>
+  <p class="body">A midwife may practise in any setting including the home, community, hospital, clinic or health unit. Working as a private midwife is not a rogue or outlandish choice — according to the ICM definition, you are working according to the full definition and scope of a midwife.</p>
+  <div class="section-title">Two things to remember as a private midwife</div>
+  <ul class="checklist">
+    <li><strong>You're in business</strong> — being in business is a skill set in itself and brings new responsibilities including how you conduct yourself on social media, on your website and in your marketing efforts.</li>
+    <li><strong>You are an autonomous practitioner with no employer</strong> — you must self-regulate. It is your responsibility to build compliance strategies into your business and clinical workflows.</li>
+  </ul>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ REGULATORY REQUIREMENTS ═══ -->
+<div class="label">Page — Regulatory requirements</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Legal, Procedural and Clinical Requirements</h1></div>
+  <p class="body">Getting this right helps you sleep peacefully at night. Being outside of the mainstream maternity system frees us from hospital policy, but it also means we have to be responsible for ourselves.</p>
+  <div class="section-title">Key governing bodies and resources</div>
+  <ul class="link-list">
+    <li><a href="https://www.ahpra.gov.au/">Australian Health Practitioner Regulation Agency — ahpra.gov.au</a></li>
+    <li><a href="https://www.nursingmidwiferyboard.gov.au/">Nursing and Midwifery Board — nursingmidwiferyboard.gov.au</a></li>
+    <li><a href="https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Safety-and-quality-guidelines-for-privately-practising-midwives.aspx">Safety and Quality Guidelines for privately practising midwives</a></li>
+    <li><a href="https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Professional-standards/Midwife-standards-for-practice.aspx">Midwife Standards for Practice</a></li>
+    <li><a href="https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Guidelines-cpd.aspx">Continuing Professional Development Guidelines</a></li>
+    <li><a href="https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/FAQ/Fact-sheet-Code-of-conduct-for-nurses-and-Code-of-conduct-for-midwives.aspx">Code of Conduct for Nurses and Midwives</a></li>
+    <li><a href="https://www.ahpra.gov.au/Resources/Social-media-guidance.aspx">Social Media: How to meet your obligations under the national law</a></li>
+    <li><a href="https://www.ahpra.gov.au/Resources/Advertising-hub/Advertising-guidelines-and-other-guidance/Advertising-guidelines.aspx">Guidelines for the advertisement of a regulated health service</a></li>
+    <li><a href="https://midwives.org.au/common/Uploaded%20files/Publications/ACM%20Guidelines%20for%20Consultation%20and%20Referral.pdf">ACM Guidelines for Consultation and Referral</a></li>
+    <li><a href="https://www.servicesaustralia.gov.au/mbs-billing-rules-for-eligible-midwife-items?context=20">Medicare items for endorsed midwives</a></li>
+    <li><a href="https://www.miga.com.au/insurance/midwives">Professional Indemnity Insurance — MIGA</a></li>
+  </ul>
+  <div class="section-title">Self-regulation strategies</div>
+  <ul class="checklist">
+    <li>Schedule regular Midwifery Practice Review</li>
+    <li>Plan for yearly emergency skills training</li>
+    <li>Make a CPD plan to ensure your hours are met</li>
+    <li>Automate insurance payments so they never lapse</li>
+    <li>Put money aside for paid training or conferences</li>
+  </ul>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ MODULE 3 NOTES ═══ -->
+<div class="label">Module 3 Notes — Page 1</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+<div class="label">Module 3 Notes — Page 2</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ PREPARATION TIME ═══ -->
+<div class="label">Page — Making the most of your preparation time</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Making the most of your preparation time</h1></div>
+  <p class="body">The most important time of starting any new project is the 'dreaming' phase — the blissful moments of preparation before anyone is expecting anything from you.</p>
+  <div class="pull"><p>"Adopt the craftsman mindset — commit to getting 1% better every day. Ask not 'how can I improve everything around me' but 'how can I improve myself'." — Cal Newport</p></div>
+  <p class="body">Recommended reading: <em>So Good They Can't Ignore You</em> by Cal Newport.</p>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">List the midwifery skills you are already confident in, then list the ones that need to be acquired or enhanced. Where will you get the new skills?</div>
+    <table class="skills-table">
+      <thead><tr><th>Skills you already have</th><th>Skills you need</th><th>Where will you get them?</th></tr></thead>
+      <tbody>
+        <tr><td style="height:44px;"></td><td></td><td></td></tr>
+        <tr><td style="height:44px;"></td><td></td><td></td></tr>
+        <tr><td style="height:44px;"></td><td></td><td></td></tr>
+        <tr><td style="height:44px;"></td><td></td><td></td></tr>
+        <tr><td style="height:44px;"></td><td></td><td></td></tr>
+        <tr><td style="height:44px;"></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ CLINICAL SKILLS ═══ -->
+<div class="label">Page — Clinical skills for private practice</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Clinical Skills for Private Practice</h1></div>
+  <ul class="checklist">
+    <li>Perineal suturing, sterile water injections, cannulation, administering fluids without a machine</li>
+    <li>Urinary catheterisation, taking blood samples, newborn screening tests, using a Pinards</li>
+    <li>Attending vaginal examinations, assisting vaginal breech birth, shoulder dystocia management</li>
+    <li>'Barebones' neonatal resuscitation skills, using a TENS machine</li>
+    <li>Physiological management of placental birth; converting to active management for PPH</li>
+    <li>Alternatives to common interventions — iron infusions, perineal repair without sutures, determining labour progress without VE, strategies for turning malpositioned babies</li>
+    <li>A set of pharmacology script templates for your reference</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">What are your immediate next steps for up-skilling in order to be clinically prepared for private practice?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ MODULE 4 NOTES ═══ -->
+<div class="label">Module 4 Notes — Page 1</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+<div class="label">Module 4 Notes — Page 2</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ BUILDING YOUR PRESENCE ═══ -->
+<div class="label">Page — Building your presence</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Building your Presence in the Birth Industry</h1></div>
+  <p class="body">As you prepare to launch, start thinking about how you will build your presence and create anticipation. You want people to know you, have developed an affection for you, and want you as their care provider by the time you are ready to take on clients.</p>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Think about what you already have and know that you can share for free. What can you give your audience that is of value?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">What feels within your capacity when it comes to your digital footprint? What feels outside of it? How can you overcome this?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ PHILOSOPHY ═══ -->
+<div class="label">Page — Your midwifery philosophy</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Your Midwifery Philosophy</h1></div>
+  <p class="body">The most important thing regarding both your own and your clients' experience of care is that your philosophies align — or at the very least that you understand each other's philosophy so that you can morph into the midwife that woman needs.</p>
+  <div class="pull"><p>"During Covid I received hundreds of calls from women wanting homebirths. The main reason I declined many was because they were choosing out of fear, not from a philosophy that aligned with homebirth."</p></div>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Identify your philosophy and that of your ideal client. What problems can you anticipate?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ AUTHORITATIVE KNOWLEDGE ═══ -->
+<div class="label">Page — Authoritative knowledge</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Authoritative Knowledge</h1></div>
+  <p class="body">Authoritative knowledge is defined as the knowledge that participants agree counts in a particular situation, and it's the basis on which they make decisions. Although essentially subjective and not necessarily correct, its power is that it counts.</p>
+  <p class="body">In a medicalised context, ownership of the artefacts and equipment used to manage labour displays who possesses the authoritative knowledge. When this rests with the medical establishment, the birthing woman turns to her caregivers for information and defers to their expert knowledge.</p>
+  <div class="pull"><p>"The belief that hospital birth for low-risk pregnancies has better outcomes than planned, attended homebirth is an urban legend." — Cohain (2012)</p></div>
+  <div class="section-title">Recommended reading</div>
+  <ul class="link-list">
+    <li>Childbirth and Authoritative Knowledge — Robbie Davis-Floyd and Carolyn Sargent</li>
+    <li>Birth in Four Cultures — Brigitte Jordan</li>
+    <li>The Farmer and the Obstetrician — Michel Odent</li>
+    <li>Reading Birth and Death: A History of Obstetric Thinking — Jo Murphy Lawless</li>
+  </ul>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ RESOURCES ═══ -->
+<div class="label">Page — Resources</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Resources to get you thinking</h1></div>
+  <div class="section-title">Books</div>
+  <ul class="checklist">
+    <li>Birthing Outside the System — Hannah Dahlen et al</li>
+    <li>Spiritual Midwifery — Ina May Gaskin</li>
+    <li>Gentle Birth, Gentle Mothering — Sarah Buckley</li>
+    <li>Reclaiming Birth as a Rite of Passage — Rachel Reed</li>
+    <li>Ina May's Guide to Childbirth — Ina May Gaskin</li>
+    <li>New Active Birth — Janet Balaskas</li>
+    <li>The Scientification of Love — Michel Odent</li>
+    <li>Birth Crisis — Sheila Kitzinger</li>
+    <li>The Birth Wars — Mary-Rose MacColl</li>
+    <li>Reading Birth and Death — Jo Murphy-Lawless</li>
+    <li>Childbirth and Authoritative Knowledge — Davis-Floyd and Sargent</li>
+    <li>The Roar Behind the Silence — Byrom and Downe</li>
+    <li>Birth with Confidence — Rhea Dempsey</li>
+    <li>Real Food for Pregnancy — Lily Nichols</li>
+    <li>Monitoring Your Baby in Labour — Dr Kirsten Small</li>
+  </ul>
+  <div class="section-title">Podcasts &amp; Websites</div>
+  <ul class="link-list">
+    <li>The Great Birth Rebellion Podcast</li>
+    <li>Evidence Based Birth Podcast — evidencebasedbirth.com</li>
+    <li>midwifethinking.com / sarahwickham.com / cochranelibrary.com</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">What are your favourite and most influential midwifery books?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ MODULE 5 NOTES ═══ -->
+<div class="label">Module 5 Notes — Page 1</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+<div class="label">Module 5 Notes — Page 2</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ GOOGLE WORKSPACE ═══ -->
+<div class="label">Page — Google Workspace</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Setting up your Business Administration</h1></div>
+  <div class="subheading">Google Workspace</div>
+  <p class="body">Google Workspace is the professional, business-grade version of Google tools. It provides the infrastructure to meet your obligations for the secure storage and handling of patient records under the Privacy Act 1988 and the Australian Privacy Principles.</p>
+  <div class="section-title">Google Workspace Setup Checklist</div>
+  <ul class="checklist">
+    <li>Choose and purchase a domain name (e.g. .com.au) via GoDaddy or similar registrar</li>
+    <li>Sign up for Google Workspace (Business Standard or Business Plus recommended)</li>
+    <li>Verify domain ownership and set up MX records to route emails to Gmail</li>
+    <li>Create your professional email address (e.g. hello@yourpractice.com.au)</li>
+    <li>Enable 2-Step Verification (2FA) for all accounts</li>
+    <li>Review and accept the Cloud Data Processing Addendum (CDPA)</li>
+    <li>Review and accept the HIPAA Business Associate Amendment (BAA)</li>
+    <li>Configure Google Drive folder structures for secure patient record storage</li>
+    <li>Create your Google Business profile so you appear on Google Maps</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Start building your Google Workspace. Notes and login details below.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ MODULE 6 NOTES ═══ -->
+<div class="label">Module 6 Notes — Page 1</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+<div class="label">Module 6 Notes — Page 2</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ 15 STEPS ═══ -->
+<div class="label">Page — Step 1: Business structure</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>15 Steps to Starting your Business</h1></div>
+  <div class="step-pill"><div class="step-num">1</div>Choosing your business structure</div>
+  <p class="body">The easiest way to start out as a private midwife is as a sole trader — suitable while earning under $75,000–$120,000. Once full-time, switching to a company structure often makes better financial sense.</p>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">What will your business structure be? Write your decision and reasoning below.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<div class="label">Page — Step 2: Defining and pricing services</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>15 Steps to Starting your Business</h1></div>
+  <div class="step-pill"><div class="step-num">2</div>Defining and pricing your services</div>
+  <p class="body">As a private midwife, your product is you — and high-quality, evidence-based midwifery care. Your fee must be fair to yourself, fair to your family, and fair to the women purchasing your service.</p>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Which services will you provide and what is a fair price for each?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<div class="label">Page — Step 3: Business name and ABN</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>15 Steps to Starting your Business</h1></div>
+  <div class="step-pill"><div class="step-num">3</div>Choosing and registering a business name + ABN</div>
+  <p class="body">Choose something that will allow you to diversify, represents you as a registered health professional, and is completely original. Check the business name register and make sure the website domain and social media handles are also available.</p>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Brainstorm business names. Check availability of your favourites across the business register, website domain and social media.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="two-col">
+    <div class="field-box"><div class="field-label">Registered business name</div><div class="write-line"></div></div>
+    <div class="field-box"><div class="field-label">ABN</div><div class="write-line"></div></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<div class="label">Page — Step 4: Online presence</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>15 Steps to Starting your Business</h1></div>
+  <div class="step-pill"><div class="step-num">4</div>Planning your online presence</div>
+  <p class="body">Your business name should feature in your social media profiles, website, and business email. Make sure they all match so people can find you consistently across all platforms.</p>
+  <div class="three-col">
+    <div class="field-box"><div class="field-label">Website domain</div><div class="write-line"></div></div>
+    <div class="field-box"><div class="field-label">Email address</div><div class="write-line"></div></div>
+    <div class="field-box"><div class="field-label">Social media handle</div><div class="write-line"></div></div>
+  </div>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Workshop what feels within your capacity when it comes to your digital footprint. What feels outside your capacity and how can you overcome this?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<div class="label">Page — Steps 5 & 6: Branding and marketing</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>15 Steps to Starting your Business</h1></div>
+  <div class="step-pill"><div class="step-num">5</div>Creating a logo and branding</div>
+  <p class="body">Your brand is not your logo, but your logo is part of your branding. The brand of a business is like its personality — the impression your business gives off when you are not personally there.</p>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Choose 3–5 brand colours and note your brand personality.</div>
+    <div style="display:flex;gap:12px;margin:10px 0 16px;">
+      <div style="width:48px;height:48px;border:1px solid #ddd;border-radius:4px;"></div>
+      <div style="width:48px;height:48px;border:1px solid #ddd;border-radius:4px;"></div>
+      <div style="width:48px;height:48px;border:1px solid #ddd;border-radius:4px;"></div>
+      <div style="width:48px;height:48px;border:1px solid #ddd;border-radius:4px;"></div>
+      <div style="width:48px;height:48px;border:1px solid #ddd;border-radius:4px;"></div>
+    </div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="step-pill"><div class="step-num">6</div>Marketing vs advertising</div>
+  <p class="body">Anyone can advertise if they have money. You sell yourself with marketing. Ask: am I giving my audience something of value right now? If yes, you are marketing.</p>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">What will your marketing strategy look like? What free value can you give your audience?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<div class="label">Page — Step 7: Finances</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>15 Steps to Starting your Business</h1></div>
+  <div class="step-pill"><div class="step-num">7</div>Organising your finances</div>
+  <ul class="checklist">
+    <li>Keep business and personal accounts completely separate</li>
+    <li>Use accounting software — Xero for bigger business, Thriday for sole traders</li>
+    <li>Keep all receipts electronically</li>
+    <li>Decide on your 'working capital' — 3–6 months of expenses held in your account</li>
+    <li>Don't spend client money before providing the service</li>
+    <li>Put money aside specifically for paying tax quarterly</li>
+    <li>Profit = approximately 50% of income after expenses, second midwives and tax</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">How do you plan to get paid? Write your standard operating procedure for receiving payment.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<div class="label">Page — Paying your second midwife</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>How to Pay your Second Midwife</h1></div>
+  <p class="body">The pay split method uses a timesheet in every woman's notes recording the time and minutes of care given. After discharge, the primary midwife calculates the pay split based on minutes of care provided.</p>
+  <div class="section-title">The pay split formula</div>
+  <ul class="checklist">
+    <li>Add all minutes of care together — example: 1,410 minutes total</li>
+    <li>Allocate $500 to the primary midwife before splitting the remainder</li>
+    <li>Divide remaining amount by total minutes — example: $6,000 ÷ 1,410 = $4.25/min</li>
+    <li>Calculate each midwife's minutes — example: second midwife attended 285 minutes</li>
+    <li>Multiply minutes by rate — example: 285 × $4.25 = $1,212.70</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">What will your second midwife arrangement look like? Write your standard operating procedure including on-call fees, payment timing, and what happens if a birth is fast.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<div class="label">Page — Step 8: Work/life boundaries</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>15 Steps to Starting your Business</h1></div>
+  <div class="step-pill"><div class="step-num">8</div>Work/life schedule and boundaries</div>
+  <p class="body">You are your biggest and only business asset. Your health and wellbeing must be prioritised. The only thing you can't schedule is the day a woman will give birth — everything else you can set boundaries around.</p>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Put every responsibility and essential item in your diary including sleep, showers, family commitments, meal prep and housework. The time remaining is how many hours you have for business. Now plan the amount of work that fits there.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<div class="label">Page — Steps 9 & 10: Emails and systems</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>15 Steps to Starting your Business</h1></div>
+  <div class="step-pill"><div class="step-num">9</div>Organising your emails</div>
+  <p class="body">File and organise your inbox in much the same way as you'd organise a filing cabinet. Your inbox then functions as a 'to do' list — only emails requiring action remain there.</p>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Set up folders in your email today. What folders do you need?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="step-pill"><div class="step-num">10</div>Establishing business systems</div>
+  <p class="body">Good systems = good business. Automate and systematise as much as you can.</p>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Think about a business or work process that could be systematised. Build your standard operating procedures here.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<div class="label">Page — Step 11: Clinical kit</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Step 11 — Gathering your Gear</h1></div>
+  <div class="step-pill"><div class="step-num">11</div>Your clinical kit</div>
+  <ul class="checklist">
+    <li>Blood pressure cuff and sphygmomanometer, 2 dopplers, tape measure, hanging weigh scale</li>
+    <li>Resuscitation box — bag, mask, tubing, suction canister, O2 sat monitor</li>
+    <li>Birth box — cord scissors, cord clamps, needles/syringes, episiotomy scissors, torch</li>
+    <li>Perineal suturing kit, cannulation kit, catheterisation kit</li>
+    <li>IV fluids x2 and giving sets, TENS machine, sharps container</li>
+    <li>Konakion, oral syringes, tuberculin needle, alcohol swabs</li>
+    <li>Newborn screening cards, heel lancets, spot bandaids, thermometer</li>
+    <li>Syntocinon and Syntometrine in small esky, birth sling, mirror</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">If you already have a working kit — list what's in it, where you source your supplies from, and how you store and transport them. If you're starting fresh, plan your kit here.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<div class="label">Page — Step 12: Documentation strategy</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Step 12 — Planning your Documentation Strategy</h1></div>
+  <div class="two-col">
+    <div class="field-box">
+      <div class="field-label">Paper notes</div>
+      <p class="body" style="font-size:10.5px;margin-top:6px;">Familiar, no device needed, always available. Challenges include storage, making copies, and efficient discharge and record keeping.</p>
+    </div>
+    <div class="field-box">
+      <div class="field-label">Digital notes</div>
+      <p class="body" style="font-size:10.5px;margin-top:6px;">Efficient record keeping. Requires charged device, monthly user fee, and time to learn. Valuable long term if started from the beginning.</p>
+    </div>
+  </div>
+  <div class="section-title">Digital notes platforms</div>
+  <ul class="link-list">
+    <li><a href="https://www.halaxy.com">Halaxy — halaxy.com</a></li>
+    <li><a href="https://www.mobilemidwife.com">Mobile Midwife — mobilemidwife.com</a></li>
+    <li><a href="https://www.cliniko.com">Cliniko — cliniko.com</a></li>
+    <li><a href="https://www.expectmaternity.com.au">Expect — expectmaternity.com.au</a></li>
+    <li><a href="https://splose.com">Splose — splose.com</a></li>
+    <li><a href="https://www.heidihealth.com/en-au">Heidi (AI note keeping) — heidihealth.com</a></li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Choose one — paper or digital. Explain your choice and your plan for implementation.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<div class="label">Page — Step 14: Care contracts</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Step 14 — Care Contracts &amp; Contingency Planning</h1></div>
+  <p class="body">A signed contract gives you proof that the woman fully understands the terms of your care, the service you've agreed to provide, and how much she has agreed to pay.</p>
+  <div class="section-title">Key elements of Mel's care contract</div>
+  <ul class="checklist">
+    <li>Engagement of care statement — naming primary and second midwife</li>
+    <li>Fee agreement — total fee, payment plan, early termination clause ($200/hr up to $6,000)</li>
+    <li>Consultation and referral obligations — ACM guidelines, PBS, Medicare, NMBA</li>
+    <li>Scope of practice — what happens if complications arise outside your scope</li>
+    <li>Professional indemnity insurance — MIGA policy details</li>
+    <li>Privacy — confidentiality, administration staff access, students, social media</li>
+    <li>Medicare — assignment of benefits, client details</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">What else would you include in your midwifery care agreement? Draft any additional clauses specific to your service here.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<div class="label">Page — Step 15: Insurance, Medicare and PBS</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Step 15 — Insurance, Medicare &amp; PBS</h1></div>
+  <div class="step-pill"><div class="step-num">15</div>Insurance, Medicare and PBS</div>
+  <p class="body">You must purchase professional indemnity insurance from MIGA for full coverage. In order to get the insurance product you must be an endorsed midwife.</p>
+  <div class="section-title">Order of operations for endorsement and Medicare</div>
+  <ul class="checklist">
+    <li>Registered midwife</li>
+    <li>Complete 5,000 clinical hours</li>
+    <li>Complete an approved postgraduate degree in Pharmacology and Diagnostics for midwives</li>
+    <li>Apply for endorsement through NMBA</li>
+    <li>Purchase professional indemnity insurance with MIGA — miga.com.au</li>
+    <li>Apply for a Medicare Provider Number</li>
+    <li>Apply for a Prescriber Number</li>
+    <li>Obtain pharmacology stationery / prescription pad</li>
+  </ul>
+  <div class="section-title">Recommended memberships</div>
+  <ul class="link-list">
+    <li><a href="https://midwives.org.au">Australian College of Midwives — midwives.org.au</a></li>
+    <li>Your local Nursing and Midwives Association or Council</li>
+    <li><a href="https://www.melaniethemidwife.com/assembly-sales">The Assembly of Rebellious Midwives — melaniethemidwife.com</a></li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Where are you in the endorsement process? What are your next steps?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ MODULE 7 NOTES ═══ -->
+<div class="label">Module 7 Notes — Page 1</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+<div class="label">Module 7 Notes — Page 2</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ BOOKING YOUR FIRST CLIENT ═══ -->
+<div class="label">Page — Booking your first client</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Booking your First Client</h1></div>
+  <p class="body">Before taking enquiries, make sure you have established: a clear definition of what service you provide, who your back-up midwife will be, a brief 'speel' covering everything you want to discuss, and a way of recording enquiries.</p>
+  <div class="section-title">Initial screening questions</div>
+  <ul class="checklist">
+    <li>When are you due?</li>
+    <li>Is this your first baby?</li>
+    <li>Where do you live?</li>
+    <li>Do you have any existing health conditions?</li>
+    <li>Tell me about your previous pregnancies and births</li>
+    <li>What are you hoping for this time?</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">How will you receive an enquiry? Write your complete standard operating procedure for taking, responding to, and following up enquiries.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ INFORMATION VISIT & FEES ═══ -->
+<div class="label">Page — Information visit and fees</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>The Information Visit &amp; How to Charge a Fee</h1></div>
+  <div class="subheading">Tips for a successful information session</div>
+  <ul class="checklist">
+    <li>Meet in a comfortable space, preferably with the partner present</li>
+    <li>Be familiar with what has already been discussed before the visit</li>
+    <li>Let them ask their questions first before offering information about yourself</li>
+    <li>Encourage them to go home and talk about it before making a decision</li>
+    <li>Let them know they have a space on your list but you need a decision within the week</li>
+  </ul>
+  <p class="body">Mel charges $7,000 for her service, which includes all antenatal, birth and postnatal care to 6 weeks (approx 40 hours face-to-face), a known second midwife, borrowing library, free loan of birth pool, TENS machine if needed, and 24/7 on-call services.</p>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">What will your service include and what fee represents what you would like to be paid? Map it all out here.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ ANTENATAL CARE ═══ -->
+<div class="label">Page — Antenatal care and clinical schedule</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Early Antenatal Care &amp; Clinical Care Schedule</h1></div>
+  <p class="body">As soon as you have formally booked a woman into your care, hurry to identify her needs so you can put preventative measures in place. With the removal of the collaborative agreement, midwives can provide Medicare services without a referring doctor from the very beginning of pregnancy.</p>
+  <div class="section-title">Mel's basic care schedule</div>
+  <ul class="checklist">
+    <li>Information visit — 5–10 weeks</li>
+    <li>Booking appointment — 6–12 weeks</li>
+    <li>Antenatal visits every 4 weeks until 30 weeks, every 2 weeks until 36 weeks, weekly until birth</li>
+    <li>2 visits in the 41st week for post-dates monitoring; daily care beyond 42 weeks</li>
+    <li>Birth attendance — remain approximately 4 hours post-birth or until stable</li>
+    <li>Postnatal: daily days 1–3, day 7, 2 weeks, 4 weeks, 6 weeks discharge</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Design your own care schedule. What type of care model do you want to offer?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ MODULE 8 NOTES ═══ -->
+<div class="label">Module 8 Notes — Page 1</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+<div class="label">Module 8 Notes — Page 2</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ TRANSFER PLANNING ═══ -->
+<div class="label">Page — Transfer planning</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Transfer Planning</h1></div>
+  <p class="body">For every woman, every time, we should also be transfer planning. A transfer is not a failed homebirth — it is simply appropriate and safe care.</p>
+  <div class="pull"><p>"If we transfer, it's because home is no longer the safest place to give birth. The hospital can provide better and safer clinical care than what we can offer at home."</p></div>
+  <div class="section-title">Transfer planning checklist</div>
+  <ul class="checklist">
+    <li>Baby car seat installed by 36 weeks</li>
+    <li>Ambulance cover arranged via private insurer or Centrelink health care card</li>
+    <li>Plan for pets and siblings in the event of transfer</li>
+    <li>Postnatal/transfer bag packed</li>
+    <li>Book into closest maternity hospital — obtain MRN</li>
+    <li>Phone contact and address for the birth unit saved and ready</li>
+    <li>Contemporaneous and up-to-date clinical records maintained</li>
+    <li>Safety and transfer sheet completed in woman's notes</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Notes on your transfer planning approach and any local hospital contacts to establish.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ CONSULTATION AND REFERRAL ═══ -->
+<div class="label">Page — Consultation and referral</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Consultation &amp; Referral — The ACM Guidelines</h1></div>
+  <p class="body">The ACM Guidelines are a tool to prompt you to scenarios that may require consultation or referral. They are NOT a risk assessment tool. A midwife can care for a woman regardless of which category she falls into — A, B or C.</p>
+  <div class="pull"><p>"Always write a Record of Understanding if a woman is a category B or C, even if she accepts consultation and referral. This protects your practice if an incident occurs."</p></div>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Let's talk about the medico-legal conversation. How will you approach the ACM Guidelines with your clients? What is your philosophy on risk and safety language?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ MANAGING LABOUR AND BIRTH ═══ -->
+<div class="label">Page — Managing labour and birth</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Managing Labour and Birth</h1></div>
+  <p class="body">Most often birth care starts remotely by phone. Prepare your car and birth kit, notify the second midwife, and make childcare plans. If the woman is well and healthy, often the only clinical task is checking foetal heart rate every 15–30 minutes.</p>
+  <div class="pull"><p>"Stay out of the way and only insert yourself in the birth space if the woman invites you or has a genuine clinical need. Stay quiet and unobtrusive."</p></div>
+  <div class="section-title">When to call your second midwife</div>
+  <ul class="checklist">
+    <li>When you think the woman is entering the pushing stage</li>
+    <li>If the woman previously had quick births — call early</li>
+    <li>If you are unsure about how to manage the birth</li>
+    <li>If you have been at the birth a long time and require rest</li>
+    <li>Multiparous clients — consider calling earlier</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Start a list of midwives who you might contact to act as your second midwife. Note their details and any conversations you've had with them.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ MANAGING CLINICAL URGENCY ═══ -->
+<div class="label">Page — Managing clinical urgency</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Managing Clinical Urgency at Birth</h1></div>
+  <p class="body">Clinical urgency does not mean you are having an emergency. Most urgent situations are either preventable or predictable. Trust your instinct and skill to detect and act upon possible urgent situations early.</p>
+  <div class="section-title">Most likely situations of clinical urgency</div>
+  <ul class="checklist">
+    <li>Breech birth</li>
+    <li>Concerning foetal heart rate</li>
+    <li>Shoulder dystocia</li>
+    <li>Postpartum haemorrhage</li>
+    <li>Maternal collapse</li>
+    <li>Baby requiring resuscitation after birth</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">For each urgent scenario above, list the equipment and skills required. Are you equipped? If not, what is your plan to get there?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ MODULE 9 NOTES ═══ -->
+<div class="label">Module 9 Notes — Page 1</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+<div class="label">Module 9 Notes — Page 2</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ POSTNATAL CARE ═══ -->
+<div class="label">Page — Postnatal care and discharge</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Postnatal Care &amp; Discharge Management</h1></div>
+  <div class="section-title">Mel's postnatal care routine</div>
+  <ul class="checklist">
+    <li>Daily visits on days 1, 2 and 3 (and day 4 if needed)</li>
+    <li>Day 3–4 — newborn screen (NBST) and oral vitamin K if preferred</li>
+    <li>Day 7 — weigh baby</li>
+    <li>2 weeks, 4 weeks — final vitamin K dose (if applicable)</li>
+    <li>6 weeks — discharge visit, issue Medicare receipt</li>
+  </ul>
+  <div class="section-title">Before you leave after the birth</div>
+  <ul class="checklist">
+    <li>Placenta born and blood loss completely controlled</li>
+    <li>Woman can walk independently and has passed urine</li>
+    <li>Baby has fed and woman is confident with feeding</li>
+    <li>Safe sleeping space planned and prepared</li>
+    <li>Newborn check and maternal observations complete, clinical notes complete</li>
+    <li>Blue book and parent pack issued</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Notes on your postnatal care approach and any areas you want to upskill in.</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ MODULE 10 NOTES ═══ -->
+<div class="label">Module 10 Notes — Page 1</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+<div class="label">Module 10 Notes — Page 2</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Notes</h1></div>
+  <div class="notes-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ KEEPING YOURSELF SAFE ═══ -->
+<div class="label">Page — Keeping yourself safe in private practice</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Keeping yourself Safe in Private Practice</h1></div>
+  <div class="pull"><p>"IF IT'S NOT DOCUMENTED IT DIDN'T HAPPEN. Provide excellent care, operate your business diligently, and document everything — in more detail than you think."</p></div>
+  <p class="body">In private practice we don't have to follow specific protocols or policies. Our clinical practice is dictated by our personal scope, the woman's preferences, her clinical picture, our own clinical reasoning, what the evidence says, and the ACM Guidelines.</p>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Start a HCCC complaints folder. List what you need to gather: updated CV, CPD template, attendance certificates. What are your next steps?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ PROFESSIONAL RELATIONSHIPS ═══ -->
+<div class="label">Page — Professional relationships and self-care</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Professional Relationships &amp; Self-care</h1></div>
+  <div class="subheading">Nurturing professional relationships</div>
+  <p class="body">Most of the time in private practice, our need for positive working relationships with other health care providers is greater than their need for us. Give other private practice midwives the time and energy you would want to receive back.</p>
+  <div class="subheading">Plan regular holidays</div>
+  <p class="body">Consciously plan holidays, slow times and clinical breaks into your year ahead of time. You'll never regret taking a holiday, but you will regret not planning one.</p>
+  <div class="section-title">Hacks to make private practice easier</div>
+  <ul class="checklist">
+    <li>Sync your watch with your phone</li>
+    <li>Always have your car packed and ready</li>
+    <li>Enter client contacts in your phone with detail</li>
+    <li>Always pack a phone charger, keep car at least half full with petrol</li>
+    <li>Have a 'leaving the house for a birth' rhythm so you don't forget anything</li>
+  </ul>
+  <div class="activity-box">
+    <div class="activity-label">Activity</div>
+    <div class="activity-text">Gather together a personal self-care bag for births. What else do you need to feel prepared, comfortable and cared for at a birth?</div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ MEDICARE ═══ -->
+<div class="label">Page — Understanding Medicare</div>
+<div class="page inner">
+  <div class="bind-guide"></div>
+  <div class="page-heading-box"><h1>Understanding Medicare</h1></div>
+  <p class="body">For any Medicare questions, email AskMBS@health.gov.au. To make Medicare claims, register for a PRODA account through Services Australia and integrate with TYRO Health for streamlined billing.</p>
+  <div class="section-title">Key Medicare resources</div>
+  <ul class="link-list">
+    <li><a href="https://www9.health.gov.au/mbs/search.cfm?cat1=251&cat2=530">Midwife Medicare item numbers — health.gov.au/mbs</a></li>
+    <li><a href="https://www.mbsonline.gov.au/">MBS Online — mbsonline.gov.au</a></li>
+    <li><a href="https://www.servicesaustralia.gov.au/mbs-billing-rules-for-eligible-midwife-items?context=20">Eligible midwife Medicare items and billing rules</a></li>
+    <li><a href="https://www.servicesaustralia.gov.au/how-to-register-for-individual-proda-account?context=33786">PRODA registration — servicesaustralia.gov.au</a></li>
+    <li><a href="https://www.tyrohealth.com/insurers/medicare/">TYRO Health Medicare integration — tyrohealth.com</a></li>
+  </ul>
+  <div class="section-title">Birth registration — by state</div>
+  <ul class="link-list">
+    <li><a href="https://www.nsw.gov.au/departments-and-agencies/births-deaths-marriages/business-partners/hospitals-and-medical-practitioners">NSW</a></li>
+    <li><a href="https://www.bdm.vic.gov.au/independent-midwives">VIC</a></li>
+    <li><a href="https://www.qld.gov.au/family/for-organisations/service-providers/maternity-staff-midwives">QLD</a></li>
+    <li><a href="https://www.sa.gov.au/topics/family-and-community/births-deaths-and-marriages/register-a-birth">SA</a></li>
+    <li><a href="https://www.wa.gov.au/organisation/department-of-justice/the-registry-of-births-deaths-and-marriages">WA</a></li>
+    <li><a href="https://www.justice.tas.gov.au/bdm/contact-details">TAS</a></li>
+    <li><a href="https://www.accesscanberra.act.gov.au/contact-us">ACT</a></li>
+    <li><a href="https://nt.gov.au/law/bdm/births-deaths-and-marriages-office-contacts">NT</a></li>
+  </ul>
+  <div class="highlight-box">
+    <p><strong>As a private midwife attending homebirths</strong>, you have the legal responsibility for registering the birth of the baby within 5 days. Register as a care provider with your state Births Deaths and Marriages as soon as possible.</p>
+  </div>
+  <div class="footer"><p>© Melanie the Midwife 2026</p></div>
+</div>
+
+<!-- ═══ BACK COVER ═══ -->
+<div class="label">Back cover</div>
+<div class="page back">
+  <div class="back-inner">
+    <div class="back-top">
+      <h2>For more audacious resources, follow along:</h2>
+      <ul class="back-links">
+        <li><a href="https://www.melaniethemidwife.com">www.melaniethemidwife.com</a></li>
+        <li><a href="https://www.thegreatbirthrebellion.com">www.thegreatbirthrebellion.com</a></li>
+        <li><a href="https://www.instagram.com/melaniethemidwife">@melaniethemidwife</a></li>
+        <li><a href="https://www.instagram.com/thegreatbirthrebellion">@thegreatbirthrebellion</a></li>
+        <li><a href="https://www.youtube.com/@MelanieTheMidwife">Melanie the Midwife Youtube</a></li>
+      </ul>
+    </div>
+    <div class="back-bottom">
+      <div>
+        <div class="back-logo-text">Melanie<br><span style="font-size:32px;">The</span><br>Midwife</div>
+        <div class="back-url">www.melaniethemidwife.com</div>
+      </div>
+      <div class="podcast-placeholder"><span>Podcast logo<br>add when available</span></div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
